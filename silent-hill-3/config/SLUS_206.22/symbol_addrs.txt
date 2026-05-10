@@ -85,6 +85,13 @@ sh3gfw_Lock_AllTexSlot_For_Shadow = 0x001b5ce0;
 sh3gfw_UnLock_AllTexSlot_For_Shadow = 0x001b5d40;
 sh3gfw_SetSlot2Tex = 0x001b5db0;
 sh3gfw_get_viewTriangle = 0x001A9F80;
+sh3gfw_EnQue_TexSlot = 0x001b5da0; 
+fake_kick = 0x00362860; // size:0x10
+fake_cid = 0x01E55F30; // size:0x10
+
+// dma2tscmd
+d2tscBeginToUseSlot = 0x00130410;
+d2tscSend = 0x001304B0;
 
 // vw
 vwGetViewPosition = 0x001B42A0;
