@@ -262,7 +262,63 @@ INCLUDE_ASM("asm/nonmatchings/GFW/sh2gfw_viewclip", kari_set_vu0cal);
 
 INCLUDE_ASM("asm/nonmatchings/GFW/sh2gfw_viewclip", sh2gfw_setVCTAG_DrawSys);
 
-INCLUDE_ASM("asm/nonmatchings/GFW/sh2gfw_viewclip", sh2gfw_set_objclip_matrix);
+void sh2gfw_set_objclip_matrix(void) {
+    float gsx; // r29+0x70
+    float gsy; // r20
+
+
+
+    
+    float NearZ = VbScreenInfo.nearz; // r21
+    float FarZ = VbScreenInfo.farz; // r22
+    float tmp[4]; // r29+0x20
+    float wvm[4][4]; // r29+0x30
+
+    
+    
+    
+    extern float clip_volume[4];
+    extern float y_dirvec[4];
+    
+    
+    
+    
+    
+    
+    
+    gsx = gsy = clip_volume[2];
+    sceVu0UnitMatrix(Env_ctl.objclip_mat);
+    sceVu0UnitMatrix(wvm);
+    
+    
+    sh2gde_Get_EyeDir(tmp); tmp[1] = 0.0f;
+    vec_normalize(tmp, wvm[2]);
+    vec_cross_product(wvm[2], y_dirvec, wvm[0]);
+    vec_copy(y_dirvec, wvm[1]);
+    vwGetViewPosition(tmp);
+    
+    tmp[1] = -1125.0;
+    sceVu0TransMatrix(wvm, wvm, tmp);
+    sceVu0InversMatrix(wvm, wvm);
+    
+    
+    
+    
+    
+    
+    
+    
+    Env_ctl.objclip_mat[0][0] = (2.0f * NearZ) / (gsx + gsx);
+    Env_ctl.objclip_mat[1][1] = (2.0f * NearZ) / (gsy + gsy);
+    Env_ctl.objclip_mat[2][2] = (FarZ + NearZ) / (FarZ - NearZ);
+    Env_ctl.objclip_mat[3][2] = (-2.0f * (FarZ * NearZ)) / (FarZ - NearZ);
+    Env_ctl.objclip_mat[2][3] = 1.0f;
+    Env_ctl.objclip_mat[3][3] = 0.0f;
+    
+    
+    
+    sceVu0MulMatrix(Env_ctl.objclip_mat, Env_ctl.objclip_mat, wvm);
+}
 
 INCLUDE_ASM("asm/nonmatchings/GFW/sh2gfw_viewclip", sh2gfw_Set_DispOnOffObj);
 

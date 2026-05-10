@@ -3,6 +3,7 @@
 #include "Fog/fog.h"
 #include "SH2_common/sh_vu0.h"
 #include "Font/fj_man.h"
+#include "vec.h"
 
 extern FOG_WORK fwork; // size: 0x15E90, address: 0x56B6D0
 extern FOG_PACK_WORK pwork; // size: 0x19010, address: 0x5526C0

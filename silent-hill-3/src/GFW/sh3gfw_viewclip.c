@@ -1,5 +1,7 @@
 #include "common.h"
 #include "GFW/sh3gfw_viewclip.h"
+#include "GFW/sh3_DrawEnvData.h"
+#include "vec.h"
 
 #pragma optimization_level 2
 
@@ -85,7 +87,38 @@ int sh3gfw_Get_CamTilePos(float* origin) {
     return ssx + (ssz * 8);
 }
 
-INCLUDE_ASM("asm/nonmatchings/GFW/sh3gfw_viewclip", sh3gfw_set_objclip_matrix);
+void sh3gfw_set_objclip_matrix(void) {
+    float gsx;
+    float gsy;
+
+    float NearZ = func_001B4130();
+    float FarZ = func_001B4110();
+    float tmp[4];
+    float wvm[4][4];
+
+    gsx = gsy = func_001B4140();
+    sceVu0UnitMatrix(Env_ctl.objclip_mat);
+    sceVu0UnitMatrix(wvm);
+    
+    sh3gde_Get_EyeDir(tmp); tmp[1] = 0.0f;
+    vec_normalize(tmp, wvm[2]);
+    vec_cross_product(wvm[2], y_dirvec, wvm[0]);
+    vec_copy_reverse(y_dirvec, wvm[1]);
+    func_001B3E80(tmp);
+    
+    tmp[1] = -1125.0;
+    sceVu0TransMatrix(wvm, wvm, tmp);
+    sceVu0InversMatrix(wvm, wvm);
+
+    Env_ctl.objclip_mat[0][0] = (2.0f * NearZ) / (gsx + gsx);
+    Env_ctl.objclip_mat[1][1] = (2.0f * NearZ) / (gsy + gsy);
+    Env_ctl.objclip_mat[2][2] = (FarZ + NearZ) / (FarZ - NearZ);
+    Env_ctl.objclip_mat[3][2] = (-2.0f * (FarZ * NearZ)) / (FarZ - NearZ);
+    Env_ctl.objclip_mat[2][3] = 1.0f;
+    Env_ctl.objclip_mat[3][3] = 0.0f;
+
+    sceVu0MulMatrix(Env_ctl.objclip_mat, Env_ctl.objclip_mat, wvm);
+}
 
 extern /* static */ float inclip;
 void sh3gfw_get_viewTriangle(sceVu0FMATRIX view_triangle) {
@@ -165,7 +198,7 @@ void sh3gfw_make_tagclipdata(sceVu0FVECTOR origin, sceVu0FMATRIX view_triangle, 
 
     for (iz = enz; iz <= stz; iz++) {
         for (ix = enx; ix <= stx; ix++) {
-            clip = sh3_ClipHitCheckSquare(/* Env_ctl.objclip_mat */ &D_01D970D0, rect, view_triangle);
+            clip = sh3_ClipHitCheckSquare(Env_ctl.objclip_mat, rect, view_triangle);
             
             if (clip) {
                 index = ix + iz * 8;

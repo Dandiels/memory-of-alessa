@@ -2,6 +2,7 @@
 #include "shared/Fog/fog.h"
 #include "Fog/fog.h"
 #include "SH3_common/sh_vu0.h"
+#include "vec.h"
 
 extern FOG_WORK fwork;
 extern FOG_PACK_WORK pwork;
