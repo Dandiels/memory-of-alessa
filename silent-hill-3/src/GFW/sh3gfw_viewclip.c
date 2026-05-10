@@ -3,8 +3,47 @@
 
 #pragma optimization_level 2
 
-// static void sh3gfw_get_blockORIGIN(float (* bbox)[4], float* origin){
-static void func_001A9C10(float (* bbox)[4], float* origin) {
+static void sh3gfw_init_vctagbuf(void* vc) {
+    Q_WORDDATA* VcBuf = vc;
+
+    /*
+        @todo: how to get this into `rodata`?
+
+        const Q_WORDDATA cleardata1 = {
+            0x10101010,
+            0x10101010,
+            0x10101010,
+            0x10101010,
+        };
+        const Q_WORDDATA cleardata2 = {
+            0x20202020,
+            0x20202020,
+            0x20202020,
+            0x20202020,
+        };
+
+        using split:
+        - [0x262280, .rodata, GFW/sh3gfw_viewclip]
+    */
+   extern Q_WORDDATA D_00361D00;
+   extern Q_WORDDATA D_00361D10;
+   Q_WORDDATA cleardata1 = D_00361D00;
+   Q_WORDDATA cleardata2 = D_00361D10;
+
+    if (!func_001AAD60()) {
+        VcBuf[0] = cleardata2;
+        VcBuf[1] = cleardata2;
+        VcBuf[2] = cleardata2;
+        VcBuf[3] = cleardata2;
+        return;
+    }
+    VcBuf[0] = cleardata1;
+    VcBuf[1] = cleardata1;
+    VcBuf[2] = cleardata1;
+    VcBuf[3] = cleardata1;
+}
+
+static void sh3gfw_get_blockORIGIN(float (* bbox)[4], float* origin) {
     int ix;
     int iz;
     int tmp[4];
@@ -33,8 +72,7 @@ static void func_001A9C10(float (* bbox)[4], float* origin) {
 }
 
 
-// int sh3gfw_Get_CamTilePos(float* origin) {
-int func_001A9D50(float* origin) {
+int sh3gfw_Get_CamTilePos(float* origin) {
     int ssx, ssz;
     float svt[4];
 
@@ -183,9 +221,9 @@ void func_001AAA90(Sh3Gfw_Work* arg0) {
     int sp70[4];
 
     func_001AEA40(sp30, arg0);
-    func_001A9B60(&arg0->pBM);
-    func_001A9C10(sp30, sp20);
-    sh3gfw_get_ViewRecTangle(sp20, &D_01D97090, sp70, func_001A9D50(sp20));
+    sh3gfw_init_vctagbuf(&arg0->pBM);
+    sh3gfw_get_blockORIGIN(sp30, sp20);
+    sh3gfw_get_ViewRecTangle(sp20, &D_01D97090, sp70, sh3gfw_Get_CamTilePos(sp20));
     sh3gfw_make_tagclipdata(sp20, &D_01D97090, sp70, &arg0->pBM);
     func_001AAB60(arg0);
 }

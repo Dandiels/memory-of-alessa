@@ -252,6 +252,9 @@ FlushCache = 0x0100CE0;
 
 // sh3gfw_viewclip
 inclip = 0x00361D30;
+sh3gfw_get_blockORIGIN = 0x001a9c10;
+sh3gfw_Get_CamTilePos = 0x001a9d50;
+sh3gfw_init_vctagbuf = 0x001a9b60;
 
 // sdk
 litodp = 0x00124b50;
