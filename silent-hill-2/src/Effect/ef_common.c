@@ -16,6 +16,11 @@ static EFCTTask* EFCTEntryEffectTask(short Kind /* r17 */);
 static u_short GetEffectLayerNum(short EffectKind /* r2 */);
 static int EFCTDeleteOldBloodDropTask(void);
 static void InitEffectTexEnv(int EffectKind /* r2 */);
+static EFCTTask* EFCTEntryEffectTask(short Kind /* r17 */);
+static int EFCTAutoNextFrame(EFCTObject* pObj /* r2 */);
+static void EFCTDoCtrlDummy(void* ptr /* r2 */);
+
+extern /* static */ void (* EFCTControlFunc[9])(void *);
 
 void EFCTInit(void) {
     shTSKInitTaskList(EFCTTaskBuf, sizeof(EFCTTaskBuf));
@@ -158,7 +163,7 @@ void EFCTSetBrokenGlass(float* parent_pos /* r20 */, float* parent_direction /* 
 void EFCTSetSmoke(float* pos /* r19 */, u_char kind /* r18 */) {
     EFCTTask* pTask; // r16
     int i; // r17
-    u_short LayerNum = 1; // r2 useless?
+    u_short LayerNum = 1; // r2
 
     for (i = 0; i < LayerNum; i++) {
         pTask = EFCTEntryEffectTask(8);
@@ -178,8 +183,29 @@ INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", GetEffectLayerNum);
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", InitEffectTexEnv);
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTEntryEffectTask);
+static EFCTTask* EFCTEntryEffectTask(short Kind /* r17 */) {
+    EFCTObject* pObject; // r16
+    shTskTASK* pTask; // r2    
+    int i = 0; // r4
 
+    pObject = EFCTLocalDataBuffer;
+    while (pObject->Using == 1) {
+        if (i >= 32) {
+            return NULL;
+        }
+        i++;
+        pObject++;
+    }
+    pTask = shTSKSetTask(EFCTControlFunc[Kind], 4);
+    if (!pTask) {
+        return NULL;
+    }
+    pObject->EffectKind = Kind;
+    pObject->Using = 1;
+    ((EFCTTask*) pTask)->pObj = pObject;
+    ((EFCTTask*) pTask)->exe.atr = Kind;
+    return pTask;
+}
 void EFCTCutEffectTask(EFCTTask* ptr) {
     if (ptr->pObj->Using == 1) {
         ptr->pObj->Using = 0;
@@ -191,21 +217,90 @@ void EFCTCutEffectTask(EFCTTask* ptr) {
             EfctFree(ptr->pObj->pAnimData);
             ptr->pObj->pAnimData = NULL;
         }
-        shTSKDelTask((shTskTASK *)ptr);
+        shTSKDelTask((shTskTASK*) ptr);
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", InitEffectAnimData);
+int InitEffectAnimData(u_short TotalFrame /* r17 */, float DrawFrameWait /* r20 */, short StartFrame /* r16 */, EFCTAnimationData** pAnim /* r18 */) {    
+    EFCTAnimationData AnimData;
+    
+    if (*pAnim) {
+        EfctFree(*pAnim);
+        *pAnim = NULL;
+    }
+    *pAnim = (EFCTAnimationData*)EfctMalloc(sizeof(EFCTAnimationData));
+    if (*pAnim == NULL) {
+        return 0;
+    }
+    ASSERT_ON_LINE(StartFrame < TotalFrame, 1073);
+    AnimData.Status = 0;
+    AnimData.StartFrameNo = StartFrame;
+    if (StartFrame <= 0) {
+        AnimData.FinishFrameNo = TotalFrame - 1;
+    } else {
+        AnimData.FinishFrameNo = StartFrame - 1;
+    }
+    AnimData.TotalFrame = TotalFrame;
+    AnimData.DrawFrameWait = DrawFrameWait;
+    AnimData.CurrentFrameNo = AnimData.StartFrameNo;
+    AnimData.DrawingTime = 0.0f;
+    AnimData.SetAnimParam = NULL;
+    **pAnim = AnimData;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", InitEffectVertexSprite);
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", SetEffectVertexSpriteXY);
+void SetEffectVertexSpriteXY(float width /* r29 */, float height /* r29 */, EFCTVertexData* VertexData /* r2 */) {
+    VertexData[0].LocalPos[0] = -width / 2.0f;
+    VertexData[0].LocalPos[1] = -height / 2.0f;
+    VertexData[0].LocalPos[2] = 0.0f;
+    VertexData[0].LocalPos[3] = 1.0f;
+    
+    VertexData[1].LocalPos[0] = width / 2.0f;
+    VertexData[1].LocalPos[1] = -height / 2.0f;
+    VertexData[1].LocalPos[2] = 0.0f;
+    VertexData[1].LocalPos[3] = 1.0f;
+    
+    VertexData[2].LocalPos[0] = -width / 2.0f;
+    VertexData[2].LocalPos[1] = height / 2.0f;
+    VertexData[2].LocalPos[2] = 0.0f;
+    VertexData[2].LocalPos[3] = 1.0f;
+    
+    VertexData[3].LocalPos[0] = width / 2.0f;
+    VertexData[3].LocalPos[1] = height / 2.0f;
+    VertexData[3].LocalPos[2] = 0.0f;
+    VertexData[3].LocalPos[3] = 1.0f;
+}
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", SetEffectVertexSpriteXZ);
+void SetEffectVertexSpriteXZ(float width /* r29 */, float height /* r29 */, EFCTVertexData* VertexData /* r2 */) {
+    VertexData[0].LocalPos[0] = -width / 2.0f;
+    VertexData[0].LocalPos[1] = 0.0f;
+    VertexData[0].LocalPos[2] = -height / 2.0f;
+    VertexData[0].LocalPos[3] = 1.0f;
+    
+    VertexData[1].LocalPos[0] = width / 2.0f;
+    VertexData[1].LocalPos[1] = 0.0f;
+    VertexData[1].LocalPos[2] = -height / 2.0f;
+    VertexData[1].LocalPos[3] = 1.0f;
+    
+    VertexData[2].LocalPos[0] = -width / 2.0f;
+    VertexData[2].LocalPos[1] = 0.0f;
+    VertexData[2].LocalPos[2] = height / 2.0f;
+    VertexData[2].LocalPos[3] = 1.0f;
+    
+    VertexData[3].LocalPos[0] = width / 2.0f;
+    VertexData[3].LocalPos[1] = 0.0f;
+    VertexData[3].LocalPos[2] = height / 2.0f;
+    VertexData[3].LocalPos[3] = 1.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", SpriteLocalRot);
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTNextFrame);
+int EFCTNextFrame(EFCTObject* pObj /* r2 */, int DoLoop /* r2 */) {
+    pObj->pAnimData->DoLoop = DoLoop;
+    return EFCTAutoNextFrame(pObj);
+}
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTAutoNextFrame);
 
@@ -229,7 +324,9 @@ INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTDeleteOldBloodDropTask);
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTDeleteOldTask);
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTDoCtrlDummy);
+static void EFCTDoCtrlDummy(void* ptr /* r2 */) {
+    EFCTCutEffectTask(ptr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", GetSpriteRotAngle);
 
@@ -241,8 +338,17 @@ INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTClipVertex);
 
 INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTResetRGBA);
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTSetPassingTimePerFrame);
+void EFCTSetPassingTimePerFrame(float time /* r29 */) {
+    passing_time = time;
+}
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", EFCTGetPassingTimePerFrame);
+float EFCTGetPassingTimePerFrame(void) {
+    return passing_time;
+}
 
-INCLUDE_ASM("asm/nonmatchings/Effect/ef_common", CalibrationZValue);
+void CalibrationZValue(u_int vertex_num /* r2 */, int z /* r2 */, EFCTVertexData* pVertex /* r2 */) {
+    int i; // r8
+    for (i = 0; i < vertex_num; i++) {
+        pVertex[i].ScreenPos[2] += z;
+    }
+}
