@@ -12,7 +12,77 @@ extern /* static */ short FontSize[2][2];
 extern /* static */ u_long font_dma_data[34];
 extern /* static */ u_long font_after_env[8];
 
-INCLUDE_ASM("asm/nonmatchings/Font/font", fontInit);
+FONT_DATA* fontInit(void) {
+    int i;
+    // @todo: figure out what this translates to
+    u_short defmes[8] = {
+        0x112, 0xD89, 0x95C,  0xADF,
+        0x172, 0x113, 0xFFFF, 0x8000
+    };
+
+    shQzero(&font, sizeof font);
+    ((u_int*) font_dma_data)[29] = (u_int) font.texbuf;
+    ((u_int*) font_dma_data)[61] = (u_int) font.clut;
+
+    
+    font.clut[0] = 0;
+    for (i = 1; i < 7; i++) {
+        font.clut[i] = FONT_CLUT(i);
+    }
+
+    
+    font.base_y = 0, font.base_x = 0;
+    font.base_z = 0xFFFFFF;
+    fontClear();
+    
+    font.top = -1;
+    
+    font.flag = 1;
+    for (i = 0; i < MES_V_COUNT; i++) {
+        memcpy(&font.mes_v[i], &defmes, sizeof defmes);
+        font.mes_v[i][4] += i;
+    }
+
+    
+    font.m_w = 32;
+    font.m_h = 32;
+    font.m_sx = 9;
+    font.m_sy = 10;
+    font.m_top = -1;
+    font.m_base_x = 0x7000;
+    font.m_base_y = 0x7000;
+    font.m_base_z = 0xFFFFFF;
+    font.m_rgba = SCE_GS_SET_RGBAQ(0x80, 0x80, 0x80, 0x50, 0);
+
+    
+    {
+        // @todo: figure out what this translates to
+        u_short fake_mes[22] = {
+            0x0,     0x237,    0x24E,    0xFA,
+            0x242,   0x232,    0x225,    0x237,
+            0x203,   0x201,    0xBD0,    0x1B3,
+            0x1CE,   0x1F3,    0x1F0,    0xFA,
+            0x1D6,   0x1C6,    0x1F6,    0xE8,
+            0xFFFD,  0xFFFF
+        }; // r29+0x40
+        u_short* str = &fake_mes; // r16
+        u_short c; // r2
+
+        while ((c = *str++) != 0xFFFF) {
+            if (c == 0xFFFD) {
+                while ((font.bottom % 25) != 0) {
+                    fontLoad(0);
+                    (&font.page_sound)[font.bottom] = 0x7FFF;
+                }
+            } else {
+                fontLoad(c);
+                (&font.page_sound)[font.bottom] = 0x7FFF;
+            }
+        }
+    }
+
+    return &font;
+}
 
 INCLUDE_ASM("asm/nonmatchings/Font/font", fontClear);
 

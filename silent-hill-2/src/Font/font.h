@@ -4,6 +4,10 @@
 #include "sh2_common.h"
 
 #define FONT_STREAM_BUFFER_SIZE 0x4000
+#define MES_V_COUNT 10
+
+// @todo: unsure what this is?
+#define FONT_CLUT(x) (((2 * x + 3) << 28) | 0x0FA0A0A0)
 
 typedef struct FONT_DATA
 {
@@ -48,7 +52,7 @@ typedef struct FONT_DATA
     /* 0x20A42 */ u_short sel_yd[4];                  // size 0x8
     /* 0x20A4A */ short sel_max;                      // size 0x2
     /* 0x20A4C */ short sel_now;                      // size 0x2
-    /* 0x20A4E */ u_short mes_v[10][64];              // size 0x500
+    /* 0x20A4E */ u_short mes_v[MES_V_COUNT][64];              // size 0x500
     /* 0x20F50 */ u_short *mes_str_now;               // size 0x4
     /* 0x20F54 */ u_short *mes_str;                   // size 0x4
     /* 0x20F58 */ u_short *prl_str;                   // size 0x4
