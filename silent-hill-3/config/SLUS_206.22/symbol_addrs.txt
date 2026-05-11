@@ -28,6 +28,7 @@ fontSelectDown = 0x15d0b0;
 fontWide = 0x15d440;
 fontGetStatus = 0x15d400;
 fontTexLoad = 0x15c960;
+fontPutSelectBar = 0x15c410;
 fontPutYesNoSelectBar = 0x15c6c0;
 fontBarBlink = 0x15aac0;
 fontSetAlpha = 0x15aa00;

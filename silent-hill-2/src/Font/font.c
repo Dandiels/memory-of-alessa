@@ -139,7 +139,54 @@ INCLUDE_ASM("asm/nonmatchings/Font/font", fontFlushNoSPR);
 
 INCLUDE_ASM("asm/nonmatchings/Font/font", fontPut);
 
-INCLUDE_ASM("asm/nonmatchings/Font/font", fontPutSelectBar);
+void fontPutSelectBar(void) {
+    /* v0 */ int x0; /* v0 */ int y0; /* v0 */ int x1; /* v0 */ int y1; /* v0 */ int z;  /* v0 */ int a;
+    /* s0 */ u_long* pCur = font.pCur;
+
+    x0 = FP16(font.sel_xl) + font.base_x;
+    x1 = FP16(font.sel_xr) + font.base_x;
+    y0 = FP16(font.sel_yu[font.sel_now] + 1) + font.base_y;
+    y1 = FP16(font.sel_yd[font.sel_now] + 1) + font.base_y;
+    z = font.base_z;
+    fontBarBlink();
+    if (font.bar_blink > 0.5f) {
+        a = 64.0f * ((1.0f - font.bar_blink) / 0.5f);
+    } else {
+        a = 64.0f * (font.bar_blink / 0.5f);
+    }
+
+    
+    
+    
+    *pCur++ = SCE_GIF_SET_TAG(3, SCE_GS_TRUE, SCE_GS_TRUE, SCE_GS_SET_PRIM(SCE_GS_PRIM_SPRITE, 0, 0, 0, /* Alpha blend */ SCE_GS_TRUE, 0, 0, 0, 0), SCE_GIF_PACKED, 1);
+    
+    
+    *pCur++ = SCE_GIF_PACKED_AD;
+    *pCur++ = SCE_GS_SET_ALPHA_1(SCE_GS_ALPHA_CS, SCE_GS_ALPHA_CD, SCE_GS_ALPHA_AS, SCE_GS_ALPHA_CD, 0);
+    *pCur++ = SCE_GS_ALPHA_1;
+    *pCur++ = SCE_GS_SET_TEST_1(SCE_GS_FALSE, SCE_GS_ALPHA_NEVER, 0, SCE_GS_AFAIL_KEEP, SCE_GS_FALSE, 0, SCE_GS_TRUE, SCE_GS_ZALWAYS);
+    *pCur++ = SCE_GS_TEST_1;
+    *pCur++ = SCE_GS_SET_PABE(SCE_GS_FALSE);
+    *pCur++ = SCE_GS_PABE;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    *pCur++ = SCE_GIF_SET_TAG(1, SCE_GS_TRUE, SCE_GS_FALSE, NULL, SCE_GIF_REGLIST, 3);
+    *pCur++ = GIF_REG(SCE_GS_RGBAQ, 0) | GIF_REG(SCE_GS_XYZ2, 1) | GIF_REG(SCE_GS_XYZ2, 2);
+    *pCur++ = SCE_GS_SET_RGBAQ(16, 32, 192, a + 16, 0);
+    *pCur++ = ASM_GS_SET_XYZ(x0, y0, z);
+    *pCur++ = ASM_GS_SET_XYZ(x1, y1, z);
+    *pCur++ = 0;
+    
+    font.pCur = pCur;
+}
 
 void fontPutYesNoSelectBar(void) {
     /* v0 */ int x0; /* v0 */ int y0; /* v0 */ int x1; /* v0 */ int y1; /* v0 */ int z;  /* v0 */ int a;
