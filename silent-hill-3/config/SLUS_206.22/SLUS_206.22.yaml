@@ -20,7 +20,7 @@ options:
   asm_nonmatching_label_macro: ""
   migrate_rodata_to_functions: True
   pair_rodata_to_text: True
-  section_order: [".text", ".vutext", ".data", ".rodata", ".lit4", ".sdata", ".bss"]
+  section_order: [".text", ".vutext", ".data", ".rodata", ".lit4", ".bss"]
   symbol_name_format: $VRAM
 segments:
   - [0x0]
