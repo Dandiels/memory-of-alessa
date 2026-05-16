@@ -83,34 +83,104 @@ typedef struct FONT_DATA
     /* 0x215AC */ int base_z;                         // size 0x4
 } FONT_DATA;
 
-void fontSetColor(int num);
-void fontSetStreamMax(u_short s_max, u_short ws_max, u_short ms_max);
 
-u_short* fontGetMesAdr(u_short* str /* r2 */, u_short num /* r2 */);
-void fontMessage(u_short* str /* r2 */);
-void fontNextMessage(void);
-u_short fontPrintStrMain(u_short** pstr /* r29+0x15C */, int flag /* r2 */);
+FONT_DATA* fontInit(void);
 
 void fontClear(void);
-void fontMessageNum(u_short* str /* r2 */, u_short num /* r2 */);
 
-int fontGetStatus(void);
-void fontPrintStr(u_short* str /* r29+0x1C */, int x /* r2 */, int y /* r2 */);
+void fontSetStreamMax(u_short s_max, u_short ws_max, u_short ms_max);
 
-int fontLoad(u_short code /* r2 */);
-void fontSet(u_short code /* r2 */, u_short x /* r17 */, u_short y /* r16 */);
-void fontSetColorDirect(u_char r /* r2 */, u_char g /* r2 */, u_char b /* r2 */, u_char alp /* r2 */);
-void fontSetAlpha(u_char alp /* r2 */);
-void* fontTexLoad(int texadr /* r2 */, int clutadr /* r2 */);
-void fontWide(u_short w /* r2 */, u_short h /* r2 */);
+int fontLoad(u_short code);
 
-void fontAllCenterOn(void);
-void fontAllCenterOff(void);
-void fontCrushOn(void);
-void fontCrushOff(void);
-void fontShadowOff(void);
+void fontSet(u_short code, u_short x, u_short y);
+
+void fontSetWide(u_short code, u_short x, u_short y, u_short w, u_short h);
+
+void fontSetBlankBox(int x0, int x1, int y);
+
+void fontSetLine(int x, int w, int y);
+
+void fontPrintStr(u_short* str, int x, int y);
+
+void fontPrintStrNum(u_short* str, u_short num, int x, int y);
+
+u_short fontPrintStrMain(u_short** pstr, int flag);
+
+void fontPrintDec(int num, int x, int y, int len, int flag);
+
+void fontSetYesNo(int y);
+
+int fontPrintWord(u_short* str, int x, int y, int align, int align2);
+
+void fontPrintStrWide(u_short* str, int pos_x, int pos_y, int sx, int sy);
+
+int fontGetMesWidth(int* buf, u_short* str);
+
+void fontSetColor(int num);
+
+void fontSetColorDirect(u_char r, u_char g, u_char b, u_char alp);
+
+void fontSetAlpha(u_char alp);
+
+u_long128* fontFlush(void);
+
+u_long128* fontFlushNoSPR(void);
+
+void fontPut(WFONT_STREAM_DATA* pstr, int z);
+
+void fontPutSelectBar(void);
+
+void fontPutYesNoSelectBar(void);
+
+void* fontTexLoad(int texadr, int clutadr);
 
 void* fontAfterEnv(void);
+
+void fontEachTurn(void);
+
+void fontPreload(void);
+
+void fontSetMes(int num, u_short* str);
+
+void fontCopyMessage(u_short* pto, u_short* pfrom);
+
+void fontPushButton(void);
+
+void fontPushButton2(void);
+
+void fontSelectUp(void);
+
+void fontSelectDown(void);
+
+u_short* fontGetMesAdr(u_short* str, u_short num);
+
+void fontMessageNum(u_short* str, u_short num);
+
+void fontMessage(u_short* str);
+
+void fontNextMessage(void);
+
+int fontGetStatus(void);
+
+void fontWide(u_short w, u_short h);
+
+void fontAllCenterOn(void);
+
+void fontAllCenterOff(void);
+
+void fontAllCenter2On(void);
+
+void fontAllCenter2Off(void);
+
+void fontShadowOff(void);
+
+void fontCrushOn(void);
+
+void fontCrushOff(void);
+
+void mfontClear(void);
+
+u_long128* mfontFlush(void);
 
 extern u_short* msg_station;
 extern FONT_DATA font;
