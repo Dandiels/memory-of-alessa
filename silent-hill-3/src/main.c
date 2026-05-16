@@ -47,7 +47,7 @@ int main(int argc, s_char* argv[]) {
             break;
         case 2:
             func_001D9090(1);
-            *(int* )T0_COUNT = 0;
+            *T0_COUNT = 0;
             func_001E5170();
             func_00194480();
             func_0012DCB0(2);
@@ -57,14 +57,14 @@ int main(int argc, s_char* argv[]) {
             func_001D9190();
             func_00195490();
             func_0013A780();
-            D_003D44A8 = *(int* )T0_COUNT;
+            D_003D44A8 = *T0_COUNT;
             func_00156390();
             func_00156AC0();
             func_00130640(0);
             shSetDF(func_00130650());
             func_001D91D0();
             func_0013CE70();
-            D_003D44A0 = *(int* )T0_COUNT;
+            D_003D44A0 = *T0_COUNT;
             if (func_0012C9B0() != 0) {
                 func_0012CFE0(3);
             }
