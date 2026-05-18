@@ -225,7 +225,7 @@ void PlayerUpdateStatusUpper3D(SubCharacter* this) {
                         if ((w->weapon == 1) && (w->target == NULL) && (w->lock_on != 0)) {
                             player_flg_on(&w->u_anime_st_flg, 1 << JMS_ST_U_LROUND);
                             if (w->lower_now == 0x1A) {
-                                player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_STAND);
+                                player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_U_LROUND);
                             }
                         }
                         if (w->target != NULL) {
