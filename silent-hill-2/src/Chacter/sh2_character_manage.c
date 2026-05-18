@@ -1,5 +1,6 @@
 #include "sh2_common.h"
 #include "Chacter/character.h"
+#include "GFW/sh2gfw_Init_ModelDrawData.h"
 
 #include "m3_sc.h"
 
@@ -14,7 +15,7 @@ int shCharacter_Manage_SetDataAdresss(SubCharacter *scp)
         return 0;
     }
 
-    pMD = sh2gfw_Get_pMD((long)scp_d->sc.kind);
+    pMD = sh2gfw_Get_pMD(scp_d->sc.kind);
     if (pMD == NULL)
     {
         return 0;

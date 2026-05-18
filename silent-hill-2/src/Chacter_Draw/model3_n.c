@@ -1,9 +1,10 @@
 #include "sh2_common.h"
-#include "model3_sub_n.h"
-#include "model3_n.h"
+#include "Chacter_Draw/model3_sub_n.h"
+#include "Chacter_Draw/model3_n.h"
 #include "eeregs.h"
+#include "Chacter/character.h"
 
-s_char *Model3SkeletonStructure(sh_Model *model)
+s_char *Model3SkeletonStructure(sh_Model* model)
 {
     s_char *structure;
     int i;

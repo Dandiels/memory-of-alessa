@@ -1,6 +1,8 @@
 #ifndef SH2GFW_INIT_MODEL_DRAW_DATA_H
 #define SH2GFW_INIT_MODEL_DRAW_DATA_H
 
+#include "FilesList/fileslist_bg.h"
+
 typedef struct Part
 {
     // total size: 0x90
@@ -35,5 +37,41 @@ typedef struct Part
     float ambient[4];                        // offset 0x70, size 0x10
     float specular[4];                       // offset 0x80, size 0x10
 } Part;
+
+
+typedef struct chr_mge_files {
+    // total size: 0x14
+    fsFileIndex* model_fid; // offset 0x0, size 0x4
+    fsFileIndex* anime_fid; // offset 0x4, size 0x4
+    fsFileIndex* cluster_fid; // offset 0x8, size 0x4
+    fsFileIndex* shadow_fid; // offset 0xC, size 0x4
+    int mid; // offset 0x10, size 0x4
+} chr_mge_files;
+
+void sh2gfw_srInit_ModelDrawWork(void);
+
+struct sh2gfw_ModelDraw_MAN* sh2gfw_Get_pMD(int chara_id);
+
+int sh2gfw_Check_ModelIsOnMemory(int cid);
+
+int sh2gfw_LoadInit_CharaModelData(void);
+
+int sh2gfw_LoadMemorySet_CharaModelData(chr_mge_files* cdl, u_long128** ModelMemBuffer, u_long128** AnimeMemBuffer, u_long128** ClusterMemBuffer, u_long128** Kg1MemBuffer);
+
+int sh2gfw_LOAD_CharaModelData(void);
+
+void sh2gfw_SyncInit_ChacterModelData(void);
+
+int sh2gfw_Cancel_LOADCharaModelData(void);
+
+void sh2gfw_ModelDrawInit_for_BackgroundLoad(int chara_id, void* memhead_model, void* memhead_anime, void* memhead_cluster, void* memhead_kg1);
+
+void* sh2gfw_CreateSubCharacter(int chara_id);
+
+int sh2gfw_Delete_Model_from_CharaID(int chara_id);
+
+void sh2gfw_kari_clear_LM(void);
+
+void sh2gfw_init_CharaModel_TextureData(struct sh2gfw_ModelDraw_MAN* pMD);
 
 #endif

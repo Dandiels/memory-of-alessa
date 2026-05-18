@@ -5,6 +5,7 @@
 #include "FilesList/fileslist_bg.h"
 #include "sound/sh_sound.h"
 #include "Effect/screen_effect.h"
+#include "Item/otn_option.h"
 #include "Item/otn_itemmain.h"
 
 /* @todo: why does objdiff display this symbol as `unsigned short`? */
@@ -63,6 +64,8 @@ static struct /* @anon8 */ {
     int seed; // offset 0x294, size 0x4
 } t; // size: 0x2A0, address: 0x116E3D0
 
+
+#define ITEM_SELECT_COUNT 75
 extern struct /* @anon1 */ {
     // total size: 0x14
     unsigned char kind; // offset 0x0, size 0x1
@@ -71,7 +74,7 @@ extern struct /* @anon1 */ {
     float pos[2]; // offset 0x4, size 0x8
     float rot; // offset 0xC, size 0x4
     float item_scale; // offset 0x10, size 0x4
-} item_select[75]; // size: 0x5DC, address: 0x116DDF0
+} item_select[ITEM_SELECT_COUNT]; // size: 0x5DC, address: 0x116DDF0
 
 /* @todo find a place for these */
 extern fsFileIndex data_pic_etc_p_laura_letter_tex[1];
@@ -476,9 +479,208 @@ void command_main(int command_step) {
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", weapon_command_main);
 
-INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", item_main_setup);
+#ifdef NON_MATCHING
+void item_main_setup(void) {
+    int i; // r2
+    int j; // r3
 
-INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", set_position);
+    t.main_step = 0;
+    t.step = 0;
+    t.examine_step = 0;
+    t.turn_speed = 0;
+    t.command_cur = 0;
+    t.command_abe = 0;
+    t.command_move = 0.0f;
+    t.gosa = -0x8F, t.cur_max = 0;
+    t.command_volume = 0;
+    t.command_light = 0;
+    t.item_no = 0;
+    t.item_kind = 0;
+    t.item_count = 0;
+    t.turnf = 0.0f;
+    t.volume_time = 0;
+    t.hp_time1 = -150.0f;
+    t.hp_time2 = 0.0f;
+    t.hp_abe = 0.0f;
+    t.allay_time = 0;
+    t.allay_abe = 0.0f;
+    t.sprite_time = 0.0f;
+    t.use_item = 0;
+    t.weapon_scale[1] = 0.0f, t.weapon_scale[0] = 0.0f;
+    t.combine[2] = 0, t.combine[1] = 0, t.combine[0] = 0;
+    t.fade = 1.0f;
+    t.fade_flag = 0;
+    t.fade_step0 = 0;
+    
+    for (i = 0; i < 0x4B; i++) {
+        item_select[i].kind = 0;
+        item_select[i].count = 0;
+        item_select[i].del = 0;
+        item_select[i].rot = 0;
+        item_select[i].item_scale = 0;
+    }
+    
+    
+    set_position(t.step);
+    for (j = 0; j < 6; j++) {
+        
+        for (i = 6; i > 0; i--) dword_struct_copy((u_int*) t.boxblur + i * 16, (u_int*) t.box + i * 16, sizeof(t.box));
+        
+        dword_struct_copy(t.boxblur, t.box, sizeof(t.box));
+    }
+    j = 0;
+    t.item_count = 0;
+    for (i = 0; i < ITEM_SELECT_COUNT; i++)
+        if (GET_FLAG(item.flag, i)) {
+            
+            item_select[j++].kind = i;
+            t.item_count++;
+        }
+    if (t.item_count < 9) t.item_count = 9;
+    t.item_no = t.item_count - 5;
+    
+    for (i = 0; i < t.item_count; i++) {
+    
+        if (!item.last_cursor) break;
+        if ((u_char) item.last_cursor == item_select[i].kind) {
+            t.item_no = i - 5;
+            if (t.item_no < 0) t.item_no += t.item_count;
+            break;
+        }
+    }
+    
+    item_turn();
+    
+    
+    if (item.equip == 4) t.weapon_scale[0] = 0.9f;
+    else if (item.equip == 0xB) t.weapon_scale[1] = 0.9f;
+
+    enWaitAllInsect();
+
+}
+#else
+INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", item_main_setup);
+#endif
+
+void set_position(int step) {
+    switch (step) {
+        case 0:
+            t.box[0][0] = -120.0f;
+            t.box[0][1] = -120.0f;
+            t.box[0][3] = 255.0f;
+            t.box[1][0] = -120.0f;
+            t.box[1][1] = 120.0f;
+            t.box[1][3] = 255.0f;
+            t.box[2][0] = 120.0f;
+            t.box[2][1] = 120.0f;
+            t.box[2][3] = 255.0f;
+            t.box[3][0] = 120.0f;
+            t.box[3][1] = -120.0f;
+            t.box[3][3] = 255.0f;
+            return;
+        case 1:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -55.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], -65.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -55.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], 65.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 55.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], 65.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 55.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], -65.0f);
+            return;
+        case 2:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -240.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], 173.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -240.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], 203.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], -80.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], 203.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], -80.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], 173.0f);
+            return;
+        case 4:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -80.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], 173.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -80.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], 203.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 80.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], 203.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 80.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], 173.0f);
+            return;
+        case 3:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], 80.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], 173.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], 80.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], 203.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 240.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], 203.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 240.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], 173.0f);
+            return;
+        case 5:
+        case 9:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -80.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], -203.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -80.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], -63.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 80.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], -63.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 80.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], -203.0f);
+            return;
+        case 6:
+        case 7:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], 80.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], -203.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], 80.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], -80.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 240.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], -80.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 240.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], -203.0f);
+            return;
+        case 8:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -240.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], -203.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -240.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], -60.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], -80.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], -60.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], -80.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], -203.0f);
+            return;
+        case 11:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -230.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], 80.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -230.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], 170.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 230.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], 170.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 230.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], 80.0f);
+            return;
+        case 12:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -100.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], -150.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -100.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], 50.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 100.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], 50.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 100.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], -150.0f);
+            return;
+        case 13:
+            t.box[0][0] = move_near(2.0f, 1.0f, t.box[0][0], -55.0f);
+            t.box[0][1] = move_near(2.0f, 1.0f, t.box[0][1], -52.0f);
+            t.box[1][0] = move_near(2.0f, 1.0f, t.box[1][0], -55.0f);
+            t.box[1][1] = move_near(2.0f, 1.0f, t.box[1][1], -48.0f);
+            t.box[2][0] = move_near(2.0f, 1.0f, t.box[2][0], 55.0f);
+            t.box[2][1] = move_near(2.0f, 1.0f, t.box[2][1], -48.0f);
+            t.box[3][0] = move_near(2.0f, 1.0f, t.box[3][0], 55.0f);
+            t.box[3][1] = move_near(2.0f, 1.0f, t.box[3][1], -52.0f);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/Item/otn_itemmain", item_turn);
 

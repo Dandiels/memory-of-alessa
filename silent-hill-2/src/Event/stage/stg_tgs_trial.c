@@ -191,7 +191,7 @@ static int EvProgBoxWithKey(void) {
             
             if (EvSubItemUse0(0x20, 0x17, 0, 0, 0, 0)) {
                 SET_GAME_FLAG(6, 1);
-                if (GET_GAME_FLAG(6, 5)) EV_PROG_STEP(12)
+                if (GET_GAME_FLAG(6, 5)) EV_PROG_STEP(12);
                 else EV_PROG_STEP(10);
             }
             break;
@@ -237,7 +237,7 @@ static int EvProgBoxWithKey(void) {
             EvSubPictureEnd();
             cyl_alp -= 0.5f * shGetDT();
             if (cyl_alp <= 0.0f) {
-                if (GET_GAME_FLAG(6, 1)) EV_PROG_STEP(12)
+                if (GET_GAME_FLAG(6, 1)) EV_PROG_STEP(12);
                 else EV_PROG_STEP(16);
             }
             break;

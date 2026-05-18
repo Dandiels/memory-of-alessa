@@ -404,7 +404,7 @@ segments:
       - [0x292d60, .rodata, SH2_common/pad]
       - [0x292d80, rodata,  rodata_0x292d80]
       - [0x2935b0, .rodata, Item/otn_itemmain]
-      - [0x2935f0, rodata,  rodata_0x2935f0]
+      - [0x293630, rodata, rodata_0x293630]
       - [0x296710, .rodata, gamemain]
       - [0x2969d0, rodata,  rodata_0x2969d0]
       - [0x296e00, .rodata, Effect/screen_effect]

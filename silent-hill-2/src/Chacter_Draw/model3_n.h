@@ -37,30 +37,6 @@ typedef struct sh_Model
     void *pTexMAN[4];
 } sh_Model;
 
-typedef struct shSkelton
-{
-    struct shSkelton *next;
-    struct shSkelton *parent;
-    sceVu0FMATRIX src_m;
-    sceVu0FVECTOR src_t;
-    sceVu0FMATRIX des_m;
-    sceVu0FVECTOR des_t;
-    sceVu0FVECTOR axis;
-    float theta;
-    float xx;
-    float yy;
-    float zz;
-    float xy;
-    float yz;
-    float zx;
-    u_short c_count;
-    u_short c_speed;
-    char change;
-    char reserved;
-    char is_key;
-    char pad;
-    void *untouchable;
-} shSkelton;
 
 // E:\work\sh2(CVS全取得)\src\Chacter_Draw\model3_n.c
 typedef struct HeadEnvPacket
@@ -104,13 +80,30 @@ typedef struct EnvPacket
     struct TailEnvPacket tail_ep; // offset 0x70, size 0x30
 } EnvPacket;
 
-// E:\work\sh2(CVS全取得)\src\Chacter_Draw\model3_n.c
-struct Model3Junk model3_junk; // size: 0x1C0, address: 0x419DC0
-// E:\work\sh2(CVS全取得)\src\Chacter_Draw\model3_n.c
-struct EnvPacket envpacketdata; // @ 0x002A9580
+extern EnvPacket envpacketdata; // @ 0x002A9580
+extern Model3Junk model3_junk; // size: 0x1C0, address: 0x419DC0
+
 // E:\work\sh2(CVS全取得)\src\Chacter_Draw\sh2gfw_CharacterOT.c
 u_long128 *CharacterOt_RequestPacket(int qwc /* r2 */);
 void CharacterOt_Append(u_int depth /* r3 */, u_long128 *packet /* r2 */);
 
-s_char *Model3SkeletonStructure(sh_Model *model);
+
+int Model3NSkeletons(void* model_);
+
+s_char* Model3SkeletonStructure(sh_Model* model_);
+
+int Model3NClusters(void* model_);
+
+void Model3DrawPre(void);
+
+void sh2_Model_MakeMatrixParams(void);
+
+void Model3Draw_n(void* scp_d_, void* model_, void* work_, float (* mwm)[4]);
+
+int Model3WorkSize(void* model_);
+
+void Model3InitWork(void* model_, void* work_);
+
+float* Model3WorkClusterWeights(void* work_);
+
 #endif
