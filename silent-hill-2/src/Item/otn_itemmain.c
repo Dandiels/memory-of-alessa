@@ -1,52 +1,66 @@
-#include "common.h"
+#include "sh2_common.h"
 #include "Event/item.h"
 #include "SH2_common/pad.h"
 #include "SH2_common/playing_info.h"
 #include "FilesList/fileslist_bg.h"
+#include "sound/sh_sound.h"
+#include "Effect/screen_effect.h"
+#include "Item/otn_itemmain.h"
 
-extern /* static */ struct /* @anon8 */ {
+/* @todo: why does objdiff display this symbol as `unsigned short`? */
+static struct /* @anon8 */ {
     // total size: 0x2A0
-    unsigned char main_step; // offset 0x0, size 0x1
-    unsigned char step; // offset 0x1, size 0x1
-    unsigned char examine_step; // offset 0x2, size 0x1
-    signed short turn_speed; // offset 0x4, size 0x2
-    signed short command_cur; // offset 0x6, size 0x2
-    signed short command_abe; // offset 0x8, size 0x2
+    u_char main_step; // offset 0x0, size 0x1
+    u_char step; // offset 0x1, size 0x1
+    u_char examine_step; // offset 0x2, size 0x1
+    u_char pad_3[1];
+    short turn_speed; // offset 0x4, size 0x2
+    short command_cur; // offset 0x6, size 0x2
+    short command_abe; // offset 0x8, size 0x2
+    u_char pad_a[2];
     float command_move; // offset 0xC, size 0x4
-    signed short gosa; // offset 0x10, size 0x2
-    signed short cur_max; // offset 0x12, size 0x2
-    unsigned char command_volume; // offset 0x14, size 0x1
-    unsigned char command_light; // offset 0x15, size 0x1
-    unsigned char prs_btn; // offset 0x16, size 0x1
-    unsigned char prs_btn2; // offset 0x17, size 0x1
+    short gosa; // offset 0x10, size 0x2
+    short cur_max; // offset 0x12, size 0x2
+    u_char command_volume; // offset 0x14, size 0x1
+    u_char command_light; // offset 0x15, size 0x1
+    u_char prs_btn; // offset 0x16, size 0x1
+    u_char prs_btn2; // offset 0x17, size 0x1
+    u_char pad_18[8];
     float box[4][4]; // offset 0x20, size 0x40
     float boxblur[7][4][4]; // offset 0x60, size 0x1C0
-    signed short item_no; // offset 0x220, size 0x2
-    signed short item_kind; // offset 0x222, size 0x2
-    signed short item_count; // offset 0x224, size 0x2
+    short item_no; // offset 0x220, size 0x2
+    short item_kind; // offset 0x222, size 0x2
+    short item_count; // offset 0x224, size 0x2
+    u_char pad_226[2];
     float turnf; // offset 0x228, size 0x4
-    signed int volume_time; // offset 0x22C, size 0x4
+    int volume_time; // offset 0x22C, size 0x4
     float hp_time1; // offset 0x230, size 0x4
     float hp_time2; // offset 0x234, size 0x4
     float hp_abe; // offset 0x238, size 0x4
     float hp_kodo; // offset 0x23C, size 0x4
     float hp_abe2; // offset 0x240, size 0x4
-    signed short allay_time; // offset 0x244, size 0x2
+    short allay_time; // offset 0x244, size 0x2
+    u_char pad_246[2];
     float allay_abe; // offset 0x248, size 0x4
     float sprite_time; // offset 0x24C, size 0x4
-    unsigned char use_item; // offset 0x250, size 0x1
+    u_char use_item; // offset 0x250, size 0x1
+    u_char pad_251[3];
     float weapon_scale[8]; // offset 0x254, size 0x20
-    signed short combine[3]; // offset 0x274, size 0x6
+    short combine[3]; // offset 0x274, size 0x6
+    u_char pad_27a[2];
     float combine_abe; // offset 0x27C, size 0x4
-    unsigned char shelf; // offset 0x280, size 0x1
-    signed short use_item_kind; // offset 0x282, size 0x2
-    unsigned char analog[4]; // offset 0x284, size 0x4
+    u_char shelf; // offset 0x280, size 0x1
+    u_char pad_281[1];
+    short use_item_kind; // offset 0x282, size 0x2
+    u_char analog[4]; // offset 0x284, size 0x4
     float fade; // offset 0x288, size 0x4
-    unsigned char fade_flag; // offset 0x28C, size 0x1
-    unsigned char fade_step0; // offset 0x28D, size 0x1
-    unsigned char fade_step1; // offset 0x28E, size 0x1
-    signed short examine_msg; // offset 0x290, size 0x2
-    signed int seed; // offset 0x294, size 0x4
+    u_char fade_flag; // offset 0x28C, size 0x1
+    u_char fade_step0; // offset 0x28D, size 0x1
+    u_char fade_step1; // offset 0x28E, size 0x1
+    u_char pad_28f[1];
+    short examine_msg; // offset 0x290, size 0x2
+    u_char pad_292[2];
+    int seed; // offset 0x294, size 0x4
 } t; // size: 0x2A0, address: 0x116E3D0
 
 extern struct /* @anon1 */ {
