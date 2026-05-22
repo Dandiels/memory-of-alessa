@@ -22,8 +22,9 @@ typedef signed char s_char;
 
 #define NULL 0
 #define PI 3.1415927f
-#define MAX_FLOAT 3.4028235e38f
+#define TAU 6.2831855f
 #define QUARTER_TURN 1.5707964f
+#define MAX_FLOAT 3.4028235e38f
 #define RADIANS_PER_DEGREE (PI / 180.0f)
 #define TO_RAD(x) RADIANS_PER_DEGREE * (x)
 #define MIN(a,b) ((a) > (b) ? (b) : (a))
@@ -66,6 +67,15 @@ typedef signed char s_char;
 
 #define INCLUDE_ASM(FOLDER, NAME)
 #define INCLUDE_RODATA(FOLDER, NAME)
+
+// Convert a reflex angle (> 180deg, or < -180deg) to the range [-PI, PI].
+#define REFLEX_ANGLE(out, value) do { \
+    float ret; \
+    if (value > PI) ret = value-TAU; \
+    else if (value < -PI) ret = value+TAU; \
+    else ret = value; \
+    out = ret; \
+} while (0);
 
 typedef union Q
 {

@@ -3,6 +3,7 @@
 #include "Chacter/m3_sc.h"
 #include "SH2_common/playing_info.h"
 #include "SH2_common/pad.h"
+#include "Chacter/m3_play.h"
 
 INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play_3d", PlayerCheckLturn180);
 
@@ -154,7 +155,539 @@ INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play_3d", PlayerUpdateStatus3D);
 
 INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play_3d", PlayerUpdateStatusStand3D);
 
-INCLUDE_ASM("asm/nonmatchings/Chacter/m3_play_3d", PlayerUpdateStatusLower3D);
+extern float dtf_0x003C8488;
+void PlayerUpdateStatusLower3D(SubCharacter* this) {
+    
+    shPlayerWork* w = &sh2jms;                // r16
+    PAD_INFO* p = &sh2jms.pad;                // r17
+    PAD_3D* p3d = &sh2jms.pad[0].pad3d;       // r18
+    SubCharacterDisp* scp_d = &sh2jms.player; // r2
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if (lower_flg_on(1 << JMS_ST_L_FALL)) {
+        if (w->lower_now != JMS_ST_L_FALL) {
+            lower_st_set(JMS_ST_L_FALL, w);
+            lower_flg_set(JMS_ST_L_FALL, w);
+            player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_LROUND);
+        }
+        return;
+    }
+    
+    
+    
+    
+    
+    if (lower_flg_on(1 << JMS_ST_L_GUARD)) {
+        if (w->lower_now != JMS_ST_L_GUARD) {
+            lower_st_set(21, w);
+            lower_flg_set(21, w);
+            player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_LROUND);
+        }
+        return;
+    }
+    
+    
+    
+    
+    if (lower_flg_on(1 << JMS_ST_L_DAMAGE)) {
+        if (w->lower_now != JMS_ST_L_DAMAGE) {
+            lower_st_set(JMS_ST_L_DAMAGE, w);
+            lower_flg_set(JMS_ST_L_DAMAGE, w);
+            player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_LROUND);
+        }
+        return;
+    }
+    
+    
+    
+    
+    
+    
+    if (lower_flg_on(1 << JMS_ST_L_EVENT)) {
+        if (w->lower_now != JMS_ST_L_EVENT) {
+            lower_st_set(JMS_ST_L_EVENT, w);
+            lower_flg_set(JMS_ST_L_EVENT, w);
+            player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_LROUND);
+        }
+        return;
+    }
+    
+    
+    
+    
+    
+    
+    if (w->upper_now == 0x1C) {
+        switch (w->lower_now) { /* switch 1; irregular */
+            case JMS_ST_L_WALK:
+            case JMS_ST_L_BACK:
+            case JMS_ST_L_LSWALK:
+            case JMS_ST_L_RSWALK:
+    
+                
+                
+                
+                
+                
+                if ((sh2jms.weapon == 1) || (sh2jms.weapon == 4)) {
+                    if ((actwithwep_flg_on(1 << JMS_ST_L_LROUND)) && (u_anime_flg_on(1 << JMS_ST_L_LROUND) == 0)) {
+                
+                        return;
+                    }
+                    break;
+                }
+                
+                
+                
+                
+                
+                
+                if ((actwithwep_flg_on(1 << JMS_ST_L_LROUND)) && ((u_anime_flg_on(1 << JMS_ST_L_LROUND) == 0) || (sh2jms.strike_splash_flg))) {
+                
+                    return;
+                }
+                break;
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            case JMS_ST_L_RUN1:
+            case JMS_ST_L_RUN2:
+            case JMS_ST_L_RUN3:
+            case JMS_ST_L_LSRUN:
+            case JMS_ST_L_RSRUN:
+                if ((sh2jms.weapon == 1) || (sh2jms.weapon == 4)) {
+                    if ((actwithwep_flg_on(0x80)) && (u_anime_flg_on(1 << JMS_ST_L_LROUND) == 0)) {
+                
+                        return;
+                    }
+                }
+                else if (sh2jms.map_mode == 0) {
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    if ((actwithwep_flg_on(0x80)) && ((u_anime_flg_on(1 << JMS_ST_L_LROUND) == 0) || (sh2jms.strike_splash_flg))) {
+                        
+                        return;
+                    }
+                }
+                break;
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            case JMS_ST_L_HOLD:
+            case JMS_ST_L_ATTACK:
+                if ((sh2jms.weapon == 1) || (sh2jms.weapon == 4)) {
+                    if (l_anime_flg_on(1 << JMS_ST_L_LROUND) == 0) {
+            
+                        return;
+                    }
+                    break;
+                }
+                
+                
+                
+                
+                if ((l_anime_flg_on(1 << JMS_ST_L_LROUND) == 0) || (sh2jms.strike_splash_flg)) {
+                
+                    return;
+                }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if ((this->eye.kind == 1) && (sh2jms.inner_to_wall <= -0.85f) && !(sh2jms.running_time < 3.0f)) {
+        
+        if (lower_flg_on(1 << JMS_ST_L_WALL_F)) {
+            lower_st_set(17, w);
+            lower_flg_set(17, w);
+        }
+    }
+    
+    
+    
+    
+    switch (PlayerCheckTurn180()) { /* switch 2; irregular */
+        case -1:
+            if ((lower_flg_on(1 << JMS_ST_L_LTURN)) && (w->hold_type == -1)) {
+                if (w->lower_now != JMS_ST_L_LTURN) {
+                    lower_st_set(JMS_ST_L_LTURN, w);
+                    lower_flg_set(JMS_ST_L_LTURN, w);
+                    player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_LROUND);
+                }
+                ;
+                REFLEX_ANGLE(w->dist_rot.y, this->rot.y - PI);
+                
+                w->dist_rot.w = 0.0f;
+                return;
+            }
+            break;
+        case 1:
+            if ((lower_flg_on(1 << JMS_ST_L_RTURN)) && (w->hold_type == -1)) {
+                if (w->lower_now != JMS_ST_L_RTURN) {
+                    lower_st_set(19, w);
+                    lower_flg_set(19, w);
+                    player_flg_on(&w->l_anime_st_flg, 1 << JMS_ST_L_LROUND);
+                }
+                
+                REFLEX_ANGLE(w->dist_rot.y, this->rot.y - PI);
+                
+                w->dist_rot.w = 0.0f;
+                return;
+            }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if ((p->forward) || (p->lstickY < 0)) {
+    
+        
+        
+        
+        PlayerCheckStraightLine(this, this->spd_roty);
+        
+        
+        
+        
+        
+        if ((p->dash) && (sh2jms.cannot_run == 0)) {
+        
+            
+            
+            
+            
+            
+            if ((lower_flg_on(1 << JMS_ST_L_RUN3)) && (sh2jms.map_mode == 0) && ((w->hold_type == -1) || ((w->upper_now != 0x1C) && (actwithwep_flg_on(8))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(0x80))))) {
+            
+                
+                
+                
+                
+                
+                
+                if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND)))) {
+                        
+                    if (w->lower_now != JMS_ST_L_RUN3) {
+                        lower_st_set(JMS_ST_L_RUN3, w);
+                        lower_flg_set(JMS_ST_L_RUN3, w);
+                        
+                        if (this->spd < 3.0f)
+                            this->spd = 3.0f;
+                    }
+                }
+                return;
+            }
+            if ((lower_flg_on(1 << JMS_ST_L_RUN2)) && ((w->hold_type == -1) || ((w->upper_now != 0x1C) && (actwithwep_flg_on(8))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(0x80))))) {
+                
+                
+                
+                
+                if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND)))) {
+
+                    if (w->lower_now != JMS_ST_L_RUN2) {
+                        lower_st_set(JMS_ST_L_RUN2, w);
+                        lower_flg_set(JMS_ST_L_RUN2, w);
+                        
+                        if (this->spd < 2.5f)
+                            this->spd = 2.5f;
+                    }
+                }
+                return;
+            }
+            if ((lower_flg_on(1 << JMS_ST_L_RUN1)) && ((w->hold_type == -1) || ((w->upper_now != 0x1C) && (actwithwep_flg_on(8))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(0x80))))) {
+                if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_RUN1)) {
+                    lower_st_set(JMS_ST_L_RUN1, w);
+                    lower_flg_set(JMS_ST_L_RUN1, w);
+                    if (this->spd < 1.5f) {
+                        this->spd = 1.5f;
+                    }
+                }
+                return;
+            }
+        }
+        if (((p->dash == 0) || (w->hold_type != -1) || (sh2jms.cannot_run)) && (lower_flg_on(1 << JMS_ST_L_WALK)) && (((w->upper_now != 0x1C) && (actwithwep_flg_on(4))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(1 << JMS_ST_L_LROUND))))) {
+            if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_WALK)) {
+                lower_st_set(9, w);
+                lower_flg_set(9, w);
+                if (this->spd < 0.6f) {
+                    this->spd = 0.6f;
+                }
+            }
+            return;
+        }
+    }
+    if (((p->backward) || (p->lstickY > 0)) && (lower_flg_on(1 << JMS_ST_L_BACK)) && (((w->upper_now != 0x1C) && (actwithwep_flg_on(4))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(1 << JMS_ST_L_LROUND))))) {
+        if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_BACK)) {
+            lower_st_set(8, w);
+            lower_flg_set(8, w);
+            this->spd = 0.6f;
+        }
+        return;
+    }
+    if ((p3d->lslide) && ((p3d->rslide == 0) || (w->lower_now == JMS_ST_L_LSRUN))) {
+        float roty;
+        switch (w->lower_prev) {
+            case 9:
+            case 0xC:
+            case 0xD:
+            case 0xE:
+                roty = this->spd_roty;
+                break;
+            default:
+                roty = -QUARTER_TURN;
+                break;
+        }
+        PlayerCheckStraightLine(this, roty);
+        if ((p->dash) && (sh2jms.cannot_run == 0) && (lower_flg_on(1 << JMS_ST_L_LSRUN)) && ((w->hold_type == -1) || ((w->upper_now != 0x1C) && (actwithwep_flg_on(8))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(0x80))))) {
+            if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_LSRUN)) {
+                lower_st_set(JMS_ST_L_LSRUN, w);
+                lower_flg_set(JMS_ST_L_LSRUN, w);
+                this->spd = 2.0f;
+            }
+            return;
+        }
+        if (((p->dash == 0) || (w->hold_type != -1) || (sh2jms.cannot_run)) && (lower_flg_on(1 << JMS_ST_L_LSWALK)) && (((w->upper_now != 0x1C) && (actwithwep_flg_on(4))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(1 << JMS_ST_L_LROUND))))) {
+            if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_LSWALK)) {
+                lower_st_set(JMS_ST_L_LSWALK, w);
+                lower_flg_set(JMS_ST_L_LSWALK, w);
+                if (this->spd < 0.6f) {
+                    this->spd = 0.6f;
+                }
+            }
+            return;
+        }
+    }
+    if ((p3d->rslide) && ((p3d->lslide == 0) || (w->lower_now == JMS_ST_L_RSRUN))) {
+        float roty;
+        switch (w->lower_prev) {
+            case 9:
+            case 0xC:
+            case 0xD:
+            case 0xE:
+                roty = this->spd_roty;
+                break;
+            default:
+                roty = QUARTER_TURN;
+                break;
+        }
+        PlayerCheckStraightLine(this, roty);
+        if ((p->dash) && (sh2jms.cannot_run == 0) && (lower_flg_on(1 << JMS_ST_L_RSRUN)) && ((w->hold_type == -1) || ((w->upper_now != 0x1C) && (actwithwep_flg_on(8))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(0x80))))) {
+            if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_RSRUN)) {
+                lower_st_set(16, w);
+                lower_flg_set(16, w);
+                this->spd = 2.0f;
+            }
+            return;
+        }
+        if (((p->dash == 0) || (w->hold_type != -1) || (sh2jms.cannot_run)) && (lower_flg_on(1 << JMS_ST_L_RSWALK)) && (((w->upper_now != 0x1C) && (actwithwep_flg_on(4))) || ((w->upper_now == 0x1C) && (actwithwep_flg_on(1 << JMS_ST_L_LROUND))))) {
+            if (((sh2jms.l_anime_st_flg == 0) || (l_anime_flg_on(1 << JMS_ST_L_LROUND))) && (w->lower_now != JMS_ST_L_RSWALK)) {
+                lower_st_set(11, w);
+                lower_flg_set(11, w);
+                if (this->spd < 0.6f) {
+                    this->spd = 0.6f;
+                }
+            }
+            return;
+        }
+    }
+    if (((p->lround) || (p->lstickX < 0)) && (lower_flg_on(1 << JMS_ST_L_LROUND))) {
+        if (w->lower_now != JMS_ST_L_LROUND) {
+            lower_st_set(6, w);
+            lower_flg_set(6, w);
+        }
+        return;
+    }
+    if (((p->rround) || (p->lstickX > 0)) && (lower_flg_on(1 << JMS_ST_L_RROUND))) {
+        if (w->lower_now != JMS_ST_L_RROUND) {
+            lower_st_set(7, w);
+            lower_flg_set(7, w);
+        }
+        return;
+    }
+    if ((w->l_anime_st_flg == 0) && (shPadPress(0, key_config.dash)) && (sh2jms.weapon != 8) && (lower_flg_on(16))) {
+        if (w->lower_now != JMS_ST_L_READY) {
+            lower_st_set(4, w);
+            lower_flg_set(4, w);
+        }
+        return;
+    }
+    if (lower_flg_on(1 << JMS_ST_L_READYOFF)) {
+        if (w->lower_now != JMS_ST_L_READYOFF) {
+            lower_st_set(5, w);
+            lower_flg_set(5, w);
+        }
+        return;
+    }
+    if ((lower_flg_on(1 << JMS_ST_L_TIRED)) && (PlayerSearchVIewButtonCheck() == 0)) {
+        if (w->lower_now != JMS_ST_L_TIRED) {
+            lower_st_set(3, w);
+            lower_flg_set(3, w);
+        }
+        return;
+    }
+    if (lower_flg_on(1)) {
+        if (w->lower_now != JMS_ST_L_STAND) {
+            lower_st_set(0, w);
+            lower_flg_set(0, w);
+            sh2jms.no_damage = 0;
+            sh2jms.player->battle.id = 0;
+            if (sh2jms.lower_prev == 0x19) {
+                sh2jms.muteki_time = 2.0f;
+            }
+        }
+        return;
+    }
+    if (shPadPress(0, key_config.ready) == 0) {
+        w->non_input += dtf_0x003C8488;
+    }
+    if (!(w->non_input < 10.0f) && (PlayerSearchVIewButtonCheck() == 0)) {
+        if (w->enemy_around) {
+            if (lower_flg_on(4)) {
+                if (w->lower_now != JMS_ST_L_ALERT) {
+                    lower_st_set(2, w);
+                    lower_flg_set(2, w);
+                }
+                return;
+            }
+        } else if ((lower_flg_on(2)) && (w->lower_now != JMS_ST_L_RELAX)) {
+            lower_st_set(1, w);
+            lower_flg_set(1, w);
+        }
+    }
+}
 
 void PlayerUpdateStatusUpper3D(SubCharacter* this) {
     shPlayerWork* w = &sh2jms;      // r16
