@@ -3,6 +3,12 @@
 
 #include "common.h"
 
-int shSyncVEnd(int mode /* r2 */);
+int shSyncVStartInit(void);
+
+int shSyncVEndInit(void);
+
+int shSyncVStart(int mode);
+
+int shSyncVEnd(int mode);
 
 #endif // SYNCV_H
