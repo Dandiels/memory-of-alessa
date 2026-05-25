@@ -270,6 +270,8 @@ segments:
       - [0x057150, c,       Font/dic]
       - [0x0582b0, c,       Font/font]
       - [0x05e0f0, asm,     text_0x05e0f0]
+      - [0x05ee30, asm,     sound/sf_sound]
+      - [0x061050, asm,     text_0x061050]
       - [0x06fc20, asm,     Event/picture]
       - [0x070990, asm,     text_0x070990]
       - [0x077880, c,       sh3shd/sh3shd_shadow_vu1_packet]
@@ -390,7 +392,7 @@ segments:
       - [0x142d90, asm,     Effect2/hh_class_8]
       - [0x143870, asm,     text_0x143870]
       - [0x143a40, asm,     Enemy/en_ckn]        # NUMB_BODY
-      - [0x144620, asm,     text_0x144620]
+      - [0x14cda0, asm,     text_0x14cda0]
       - [0x15dcd0, asm,     Enemy/en_nse]        # NURSE
       - [0x15e760, asm,     text_0x15e760]
       - [0x166ad0, asm,     Enemy/en_deb]        # INSANE_CANCER

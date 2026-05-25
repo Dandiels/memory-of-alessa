@@ -356,6 +356,14 @@ ps2ScfGetLanguage = 0x0020EBC0;
 ps2ScfGetTimeZone = 0x0020EC50;
 ps2ScfGetLocalTimefromRTC = 0x0020ED90;
 
+// sh3+4 sound
+sdPlayAreaADX = 0x0024cad0;
+sdPlayAreaSpuSe = 0x0024ce50;
+sdGetTrackDataByCharaPos = 0x0024d170;
+sdClearSpuSeMan = 0x0024d760;
+sfSoundSystemColdInit = 0x001fefd0;
+sdSysPlaySeq = 0x0015e8b0;
+
 // ...
 sh3_CharacterDrawOne = 0x001d13d0;
 LightGetNthViewNHM = 0x001c4d90;

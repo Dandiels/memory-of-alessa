@@ -1339,6 +1339,7 @@ rom:0xEECCC reloc:MIPS_PC16 symbol:.L001EE8F8 addend:0x4
 rom:0xEED50 reloc:MIPS_PC16 symbol:.L001EE8F8 addend:0x4
 rom:0xEEDEC reloc:MIPS_PC16 symbol:.L001EE8F8 addend:0x4
 rom:0xEEDFC reloc:MIPS_PC16 symbol:.L001EE8F8 addend:0x4
+rom:0xFF534 reloc:MIPS_PC16 symbol:sfSoundSystemColdInit addend:0x4
 rom:0x116FD8 reloc:MIPS_PC16 symbol:.L00216A90 addend:0x4
 rom:0x117A88 reloc:MIPS_PC16 symbol:.L00219D3C addend:0x4
 rom:0x117C10 reloc:MIPS_PC16 symbol:.L00219D3C addend:0x4
