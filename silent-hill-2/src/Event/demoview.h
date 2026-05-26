@@ -3,6 +3,17 @@
 
 #include "common.h"
 
+#define DRAMA_DEMO_9  0x9
+#define DRAMA_DEMO_D  0xD
+#define DRAMA_DEMO_E  0xE
+#define DRAMA_DEMO_21 0x21
+#define DRAMA_DEMO_26 0x26
+#define DRAMA_DEMO_2E 0x2E
+#define DRAMA_DEMO_41 0x41
+#define DRAMA_DEMO_42 0x42
+#define DRAMA_DEMO_4A 0x4A
+#define DRAMA_DEMO_4E 0x4E
+
 // total size: 0x4
 typedef struct DramaDemo_MessageTime {
     // Members

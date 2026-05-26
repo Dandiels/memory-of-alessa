@@ -5,6 +5,12 @@
 #include "Chacter/character.h"
 #include "shared/Chacter_Draw/clani.h"
 
+#define HHH_JMS_CHARA_ID 0x103 // highest detail james model
+#define EN_RED_CHARA_ID 0x208 // pyramid head
+#define LAU_CHARA_ID 0x104 // laura
+#define AGL_CHARA_ID 0x107 // angela
+#define EN_PAP_CHARA_ID 0x204 // abstract daddy
+
 // E:\work\sh2(CVS全取得)\src\Chacter\m3_sc.c
 extern struct shCharacterAll sh2chara; // size: 0x6810, address: 0x3C84D0
 

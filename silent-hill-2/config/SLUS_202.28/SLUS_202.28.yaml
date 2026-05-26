@@ -311,7 +311,7 @@ segments:
       - [0x17b070, asm, Effect2/hh_class_water_08]
       - [0x17c4a0, asm, Effect2/hh_class_water_09]
       - [0x17d7b0, asm, Enemy/en_insect]
-      - [0x17ea10, asm, sh2shd/sh2shd_shadow_env]
+      - [0x17ea10, c,   sh2shd/sh2shd_shadow_env]
       - [0x181300, asm, Effect2/hh_class_fire_phenomenon_00]
       - [0x1816f0, asm, Effect2/hh_class_flame_00]
       - [0x182150, asm, Effect2/hh_class_flame_01]
