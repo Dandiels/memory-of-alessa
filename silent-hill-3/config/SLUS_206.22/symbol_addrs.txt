@@ -415,6 +415,7 @@ SubCharacter_Function_0x00230cd0 = 0x00230cd0;
 shCharacterEnemyFLYAnimeSetP = 0x0029aa10;
 shCharacterEnemyCKNAnimeSetP = 0x0024c180;
 EnemyCKNFunction = 0x00244110;
+enSetFunction = 0x0022ef10;
 
 clAllInitCollisionData = 0x0019f750;
 clSetCharaHitColumn = 0x0019fd40;
@@ -439,6 +440,25 @@ _motion_info_list = 0x00387F28; // allow_duplicated:True
 _scale_end_list = 0x00387EE0; // allow_duplicated:True
 
 HH_Effect_Object_Impact_Post = 0x001C20C0;
+
+LocalWrapper_TextureTransport_Entry = 0x0023a0c0;
+sh3gfw_Get_Reg_TEX0 = 0x001b5b00;
+kari_Thr_LFD2TextureSend = 0x0023a120;
+kari_Thr_LFD1D2SyncKick = 0x0023a180;
+shLensFlarePolyFT4AddPacketGif = 0x0023a1a0;
+kari_shLensFlareEffect_Draw = 0x0023aa20;
+shLensFlareSpriteAddPacketGif = 0x0023bdd0;
+shLensFlareLightCenterIsVisible = 0x0023c130;
+shLensFlareSetLightSeed = 0x0023c240;
+shLensFlareGetScreenInfo = 0x0023c0c0;
+sh3gde_getWorldScreenMatrix = 0x001b4300;
+shLensFlareOresenHokan = 0x0023c400;
+shLensFlareMakeEffectTargetRate = 0x0023c4e0;
+shLensFlareMakeScreenAngle = 0x0023c6b0;
+shLensFlareMakeScreenInfo = 0x0023c7d0;
+shLensFlareExec = 0x0023c8d0;
+Kari_LensFlare_DrawExec = 0x0023c000;
+sh3gfw_GsExecStoreImage = 0x002399d0;
 
 // could be wrong
 // Object_Initialize = 0x002f4130; // allow_duplicated:True visibility:local

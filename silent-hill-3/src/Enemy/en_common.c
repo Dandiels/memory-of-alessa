@@ -41,7 +41,7 @@ INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", func_0022EE20);
 
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", func_0022EEB0);
 
-INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", func_0022EF10);
+INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", enSetFunction);
 
 INCLUDE_ASM("asm/nonmatchings/Enemy/en_common", func_0022EF30);
 
