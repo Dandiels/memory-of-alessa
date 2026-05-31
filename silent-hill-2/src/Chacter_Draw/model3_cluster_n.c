@@ -55,7 +55,7 @@ void TransferDefaultClusterNodes(Model* model) {
     while (i < n_cluster_nodes) {
         int n_rest_nodes = n_cluster_nodes - i;
         int n_nodes = n_rest_nodes < 0x100 ? n_rest_nodes : 0x100;
-        int sadr = (i < 0x300 ? i : 0x300) * 16; // r20
+        int sadr = (i < MAX_N_CLUSTERS ? i : MAX_N_CLUSTERS) * 16; // r20
 
         sceDmaChan* fromSPR;
         sceDmaChan* toSPR;
@@ -75,7 +75,7 @@ void TransferDefaultClusterNodes(Model* model) {
         
         
         
-        if (i >= 0x300) {
+        if (i >= MAX_N_CLUSTERS) {
         
             
             fromSPR = sceDmaGetChan(SCE_DMA_fromSPR);
@@ -148,9 +148,9 @@ void Model3UpdateClusters(Model* model, ModelWork* work) {
         
         
         {
-            sceDmaChan* fromSPR = sceDmaGetChan(8);
+            sceDmaChan* fromSPR = sceDmaGetChan(SCE_DMA_fromSPR);
             sceVu0FVECTOR* spr = (void*) SCRATCHPAD_START;
-            int n = n_cluster_nodes < 0x300 ? n_cluster_nodes : 0x300;
+            int n = n_cluster_nodes < MAX_N_CLUSTERS ? n_cluster_nodes : MAX_N_CLUSTERS;
             int i;
         
             
