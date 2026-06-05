@@ -2,6 +2,8 @@
 #include "Chacter/m3_play.h"
 #include "Chacter/skelton.h"
 #include "Heap/sh2_ch_malloc.h"
+#include "Lens/lens_flare.h"
+#include "Chacter_Draw/clani.h"
 
 static SubCharacter* shCharacterGetFreeList(void);
 static void AddFreeList(SubCharacter* scp);
@@ -488,9 +490,106 @@ void shCharacterDelete(SubCharacter* scp) { // but this is not matched lol
 
 }
 
-INCLUDE_ASM("asm/nonmatchings/Chacter/m3_sc", shCharacterPlayingExecAnimeOne);
+void shCharacterPlayingExecAnimeOne(SubCharacter* scp) {
+    SubCharacterDisp* scp_d = scp;
+    shSkelton * stp; // r2
+    SubCharacter * scp_wp; // r2
+    u_char weapon; // r2
 
-INCLUDE_ASM("asm/nonmatchings/Chacter/m3_sc", shCharacterDramaExecAnimeOne);
+    switch (scp_d->sc.kind) {
+        case LLL_JMS_CHARA_ID:
+        case HLL_JMS_CHARA_ID:
+            sh_PJMS_SetUntouchUpper(scp_d->anime.top);
+            shCharacterPlayingAnimeExecMain(&scp_d->anime, 0);
+            sh_PJMS_ResetUntouchUpper(scp_d->anime.top);
+            sh_PJMS_SetUntouchUnder(scp_d->anime2.top);
+            shCharacterPlayingAnimeExecMain(&scp_d->anime2, 1);
+            sh_PJMS_ResetUntouchUnder(scp_d->anime2.top);
+            mizSetUntouchWithoutKnee(scp_d->anime2.top);
+            shCharacterKneeAngleExec(&scp_d->anime2);
+            mizResetUntouchWithoutKnee(scp_d->anime2.top);
+            if (scp_d->sc.status & 0x20000) {
+                sh_PJMS_SetUntouchUnder(scp_d->anime2.top);
+                shCharacterNeckAngleExec(&scp_d->anime2);
+                sh_PJMS_ResetUntouchUnder(scp_d->anime2.top);
+            }
+            break;
+
+        case LLL_MAR_CHARA_ID:
+            shCharacterPlayingAnimeExecMain(&scp_d->anime, 0);
+            MariaSetUntouchWithoutNeck(scp_d->anime.top);
+            shCharacterNeckAngleExec(&scp_d->anime);
+            MariaResetUntouchWithoutNeck(scp_d->anime.top);
+            break;
+        default:
+            shCharacterPlayingAnimeExecMain(&scp_d->anime, 0);
+            break;
+    }
+
+    switch (scp_d->sc.kind) {
+        case HLL_JMS_CHARA_ID:
+        case LLL_JMS_CHARA_ID:
+            weapon = PlayerGetJamesWeapon();
+            if (!(scp_wp = shCharacterGetSubCharacter(WEAPON_ID_START + weapon, -1))) break;
+            shUpdateWeaponMatrixAfterAnime(scp_wp, scp_d->sc.kind);
+            break;
+
+        case BOAT_CHARA_ID:
+            shUpdateBoatJamesPosAfterAnime();
+            break;
+
+        case EN_IKE_CHARA_ID:
+            enIKETrans(scp_d->sc.enemy_p);
+            break;
+
+        case EN_ARM_CHARA_ID:
+            enARMTrans(scp_d->sc.enemy_p);
+            break;
+    }
+
+    switch (scp_d->sc.kind) {
+        case HLL_JMS_CHARA_ID:
+        case LLL_JMS_CHARA_ID:
+            shGetJamesLightPos_Calc();
+            shLensFlareExec(&scp_d->sc, 3.0f, 0);
+            if (PlayerReverseLightCalcIsOn()) {
+                shGetJamesLightPos_Calc_Reverse();
+                shLensFlareExec(&scp_d->sc, 3.0f, 1);
+            }   
+    }
+}
+
+void shCharacterDramaExecAnimeOne(SubCharacter* scp) {
+    SubCharacterDisp* scp_d = scp;
+    SubCharacter* scp_wp;
+    u_char weapon;
+
+    shCharacterDramaAnimeExecMain(&scp_d->anime);
+    ClusterAnimeExec(scp_d->cluster_anime, &scp_d->anime, scp_d);
+
+    switch (scp_d->sc.kind) {
+        case HHL_JMS_CHARA_ID:
+        case HLL_JMS_CHARA_ID:
+        case LLL_JMS_CHARA_ID: {
+            weapon = PlayerGetJamesWeapon();
+            if (!(scp_wp = shCharacterGetSubCharacter(WEAPON_ID_START + weapon, -1))) break;
+            shUpdateWeaponMatrixAfterAnime(scp_wp, scp_d->sc.kind);
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    switch (scp_d->sc.kind) {
+        case HHH_JMS_CHARA_ID:
+        case HHL_JMS_CHARA_ID:
+        case HLL_JMS_CHARA_ID:
+        case LLL_JMS_CHARA_ID:
+            shGetJamesLightPos_Calc();
+            shLensFlareExec(&scp_d->sc, 3.0f, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/Chacter/m3_sc", shCharacterAnimeCopyForReverseModel);
 

@@ -217,7 +217,7 @@ void ClusterAnimeSet(shClusterAnime* cap, void* data) {
     cap->frame_updated = 1;
 }
 
-void ClusterAnimeExec(shClusterAnime* cap, shAnime3d* ap) {
+void ClusterAnimeExec(shClusterAnime* cap, shAnime3d* ap, void* scp_d) {
     Header * header; // r2
     int n_frames; // r16
     int n_clusters; // r17

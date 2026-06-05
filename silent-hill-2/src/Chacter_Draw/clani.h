@@ -43,7 +43,7 @@ extern float cluster_weight_data[32][20]; // size: 0xA00, address: 0x418780
 
 void shCharacterInitCluster(void);
 
-void ClusterAnimeExec(shClusterAnime * cap, shAnime3d * ap);
+void ClusterAnimeExec(shClusterAnime* cap, shAnime3d* ap, void* scp_d);
 
 void ClusterAnimeSet(shClusterAnime* cap, void* data);
 
