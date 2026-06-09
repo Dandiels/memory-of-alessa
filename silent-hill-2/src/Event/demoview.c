@@ -4,6 +4,8 @@
 #include "Font/font.h"
 #include "SH2_common/playing_info.h"
 
+#pragma fast_fptosi on // temporary fix SubtitlesManager needs `fast_fptosi on` but `sh2_common.h` has `fast_fptosi off`
+
 extern /* static */ float sbt_timer; 
 
 INCLUDE_ASM("asm/nonmatchings/Event/demoview", DdsReadShort);
