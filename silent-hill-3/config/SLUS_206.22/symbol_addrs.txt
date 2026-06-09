@@ -314,12 +314,6 @@ sh3gfw_Get_CamTilePos = 0x001a9d50;
 sh3gfw_init_vctagbuf = 0x001a9b60;
 y_dirvec = 0x00361d20;
 
-// sdk
-
-// cscvu1.c
-cscVu1SetTag = 0x002B5460;
-csct = 0x01F67FC0; // type:s32
-
 // sh_kt_vif0.c
 ktVif0Wait2 = 0x001d8ba0;
 ktVif0Send = 0x001d8be0;
@@ -814,6 +808,20 @@ voBufIncCount = 0x002B9540;
 voBufGetData = 0x002B95B0;
 voBufIsEmpty = 0x002B9600;
 voBufGetTag = 0x002B9610;
+
+// pss_cscvu1.c
+cscVu1SetTag = 0x002B5460;
+csct = 0x01F67FC0; // type:s32
+cscVu1Xyz2offset = 0x002b4530;
+setGIFtag = 0x002b4590;
+vu1_init = 0x00346580;
+vu1_base_adr = 0x0039DB48; // size:12
+load_yuvfrfl0_mpg = 0x00347080;
+load_yuvfrfl1_mpg = 0x00347980;
+load_yuvprg0_mpg = 0x00348280;
+load_yuvprg1_mpg = 0x00348B80;
+vu1_XYZ2Offset = 0x00346640;
+mkcntpacket = 0x002b5500;
 
 // sdk wrapper functions?
 CreateSema_ = 0x001DC150;

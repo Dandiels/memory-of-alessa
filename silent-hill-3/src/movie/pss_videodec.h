@@ -3,12 +3,8 @@
 
 #include "movie.h"
 #include "mpeg/videodec.h"
+#include "shared/movie/cscvu1.h"
 #include "pss_vobuf.h"
-
-typedef struct
-{
-    u_int* micro[3][2];
-} CscVu1;
 
 typedef struct
 { // 0xb8
