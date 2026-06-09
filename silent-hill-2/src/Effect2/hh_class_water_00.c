@@ -51,16 +51,6 @@ static Wave_Element* Oldest_WaveElement_Search(HH_Object_Water_00* pThis) {
     return result;
 }
 
-static inline void word_struct_copy(u_int* dst, u_int* src, u_int size) {
-    int i = size / 4;
-    do {
-        int w0 = src[0];
-        src++, i--;
-        dst[0] = w0;
-        dst++;
-    } while (i > 0);
-}
-
 static u_int WaveElement_Addition(HH_Object_Water_00* pThis, Wave_Element* pElement) {
     u_int result;                                                 // r2
     Wave_Element* pFree_Element = Free_WaveElement_Search(pThis); // r2

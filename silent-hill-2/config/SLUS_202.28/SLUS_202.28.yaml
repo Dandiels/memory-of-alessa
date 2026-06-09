@@ -280,7 +280,7 @@ segments:
       - [0x165530, c,   Effect2/hh_class_water_15]
       - [0x166b00, asm, Effect2/hh_class_water_20]
       - [0x167360, asm, Effect2/hh_class_water_30]
-      - [0x168720, asm, Effect2/hh_class_water_common]
+      - [0x168720, c,   Effect2/hh_class_water_common]
       - [0x1691d0, asm, Effect2/hh_class_water_splash_phenomenon_00]
       - [0x169790, c,   Effect2/hh_class_wrapper]
       - [0x16a310, c,   Effect2/hh_dbg_wrapper]

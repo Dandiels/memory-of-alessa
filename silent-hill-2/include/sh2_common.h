@@ -5,6 +5,20 @@
 
 #pragma fast_fptosi off
 
+static inline float reflex_angle(float x) {
+    float result;
+    if (x > 0.0f) {
+        result = fmodf(x, TAU);
+        if (result > PI)
+            result -= TAU;
+    } else {
+        result = fmodf(x, -TAU);
+        if (result < -PI)
+            result += TAU;
+    }
+    return result;
+}
+
 static inline int clamp(int b, int i) {
     asm("slt $t7, %1, %0; movn %0, %1, $t7" : "=r"(b) : "r"(i) :);
     return b;

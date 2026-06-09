@@ -20,7 +20,6 @@ typedef struct Wave_Element {
     float Verocity;             // offset 0x50, size 0x4
 } Wave_Element;
 
-
 typedef struct WaveArea_Infomeation {
     // total size: 0x90
     float World_Location[4];         // offset 0x0, size 0x10
@@ -52,5 +51,23 @@ static inline u_long hh_class_water_clamp(int i) {
     u_long vmax = clamp_n(i, 2) << 7;
     return c | (vmax << 0x22);
 }
+
+static inline void word_struct_copy(u_int* dst, u_int* src, u_int size) {
+    int i = size / 4;
+    do {
+        int w0 = src[0];
+        src++, i--;
+        dst[0] = w0;
+        dst++;
+    } while (i > 0);
+}
+
+u_int HH_Class_WaterCommon_WaveArea_Calculator(WaveArea_Infomeation* pInfo, Wave_Element* pElement_Table, u_int Element_Max, u_int Area_Index);
+u_int HH_Class_WaterCommon_WaveArea_GridLink_Y_Value_Calculator(WaveArea_GridLink_Infomeation* pInfo);
+int HH_Class_WaterCommon_WaveArea_CurrentArea_Search(float* Position, WaveArea_Infomeation* pInfo_Table, u_int Table_Max);
+u_int HH_Class_WaterCommon_WaveElement_Addition(Wave_Element* pElement_Table, u_int Element_Max, Wave_Element* pAdd_Element);
+void HH_Class_WaterCommon_WaveElement_Time_Count(Wave_Element* pElement_Table, u_int Element_Max);
+void HH_Class_WaterCommon_Area_Enable_Table_Clear(u_int* pArea_Enable_Table, u_int Table_Max);
+void HH_Class_WaterCommon_Area_Enable_Manager(u_int* pArea_Enable_Table, WaveArea_Infomeation* pInfo_Table, u_int Table_Max, int Current_Area);
 
 #endif // HH_CLASS_WATER_COMMON_H
