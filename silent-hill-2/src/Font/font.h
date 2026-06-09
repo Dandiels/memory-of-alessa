@@ -179,7 +179,7 @@ void mfontClear(void);
 
 u_long128* mfontFlush(void);
 
-extern u_short* msg_station;
+extern u_short msg_station[]; // can I add the size? this should be u_short msg_station[2048] / is extern needed if this is their correct home?
 extern FONT_DATA font;
 extern char font_stream_buf[FONT_STREAM_BUFFER_SIZE];
 
