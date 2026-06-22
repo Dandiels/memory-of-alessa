@@ -309,6 +309,7 @@ $(OBJDIFF):
 
 $(MWCCGAP_ENTRYPOINT):
 	$(GIT) submodule update --init --recursive
+	@touch $(MWCCGAP_PATCH_VERSION_FILE)
 
 $(BINUTILS_VERSION_FILE): $(AS)
 	@rm -rf $(BINUTILS)
