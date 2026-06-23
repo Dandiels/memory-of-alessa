@@ -1,12 +1,15 @@
 import argparse
 from pathlib import Path
 from constants import *
+
 from commands.generate import GenerationArgs, split_yaml
 from commands.extract import ExtractionArgs, extract_mfa
 from commands.annotate import AnnotationArgs, annotate_asm
 from commands.patch import PatchArgs, patch_relocations
 from commands.merge import MergeArgs, merge_objdiff_units
 from commands.create import CreationArgs, create_overlay_yamls
+
+from commands.util import configure_util_parser
 
 def extract(args: ExtractionArgs):
     extract_mfa(args)
@@ -277,6 +280,12 @@ def main():
         help="a symbol_addrs template (see overlay_symbol_addrs.txt)"
     )
     create_parser.set_defaults(func=create)
+
+    util_parser = subparsers.add_parser(
+        "util",
+        help="run general utilities"
+    )
+    configure_util_parser(util_parser)
 
     args = parser.parse_args()
     if hasattr(args, "func"):

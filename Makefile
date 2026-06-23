@@ -222,6 +222,8 @@ compiler-info:
 alessatool:
 	$(ALESSATOOL)
 
+binutils: $(AS)
+
 clean:
 	@$(MAKE) PROJECT=silent-hill-3 clean-project
 	@$(MAKE) PROJECT=silent-hill-2 clean-project
@@ -235,7 +237,8 @@ clean-project:
 extract: $(SOURCE_OVERLAY_ARCHIVE)
 	$(ALESSATOOL) $(EXTRACT)
 
-binutils: $(AS)
+overlays-lowercase:
+	$(ALESSATOOL) util lowercase --folder-path $(ROM)/overlay
 
 sh3:
 	$(MAKE) PROJECT="silent-hill-3"
@@ -346,8 +349,8 @@ endef
 PHONY_TARGETS := \
 	alessatool binutils clean clean-project compiler-info \
 	death debug deep-clean diff expected extract heaven hell \
-	progress rebuild report setup sh2 sh3 sh2-clean sh3-clean \
-	sh2-report sh3-report split
+	progress overlays-lowercase rebuild report setup sh2 sh3 \
+	sh2-clean sh3-clean sh2-report sh3-report split
 .PHONY: $(PHONY_TARGETS)
 ifeq ($(filter $(PHONY_TARGETS) $(OBJDIFF_CONFIG),$(MAKECMDGOALS)),)
 -include $(BINARIES:%=$(LINKERS)/%.d)
