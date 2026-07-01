@@ -51,6 +51,8 @@
 #define GAME_FLAG_503 503
 #define GAME_FLAG_517 517
 #define GAME_FLAG_607 607
+#define GAME_FLAG_1276 1276
+#define GAME_FLAG_1322 1322
 
 #define SET_EV_STEP(p_step, s_step) \
 do {                                \
