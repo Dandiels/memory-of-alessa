@@ -25,7 +25,7 @@ segments:
     start: 0x80
     bss_size: 0x80
     subsegments:
-      - [0x80, c, Event/subway_00]
+      - [0x80, c, Event/stage/subway_00]
       - [0xF80, data, subway_00_data]
       - { vram: 0x1F6F600, type: bss, name: subway_00_bss }
   - [0x2000]

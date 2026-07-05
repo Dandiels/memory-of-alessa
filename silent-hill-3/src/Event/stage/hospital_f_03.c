@@ -54,25 +54,25 @@ int func_01F6D680_hospital_f_03(void) {
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6D840_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6D840_hospital_f_03);
 
 void func_01F6D940_hospital_f_03(void) {
     func_0016C540(&D_01F70580_hospital_f_03, &D_01F705E0_hospital_f_03);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6D960_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6D960_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6D9F0_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6D9F0_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6DC20_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6DC20_hospital_f_03);
 
 void func_01F6DC50_hospital_f_03(int arg0) {
     func_001DE5B0(&func_01F6DC20_hospital_f_03, arg0, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6DC70_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6DC70_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6DCB0_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6DCB0_hospital_f_03);
 
 int func_01F6DFA0_hospital_f_03(void) {
     int ret;
@@ -113,13 +113,13 @@ int func_01F6DFA0_hospital_f_03(void) {
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E110_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E110_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E3B0_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E3B0_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E440_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E440_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E490_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E490_hospital_f_03);
 
 void func_01F6E650_hospital_f_03(unk_struct* arg0) {
     int temp_a1;
@@ -135,15 +135,15 @@ void func_01F6E650_hospital_f_03(unk_struct* arg0) {
 void func_01F6E6A0_hospital_f_03(int arg0) {
     func_001DE5B0(&func_01F6E650_hospital_f_03, arg0, 1);
 }
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E6C0_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E6C0_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E7E0_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E7E0_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6E900_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6E900_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6EF30_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6EF30_hospital_f_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6EF40_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6EF40_hospital_f_03);
 
 void func_01F6F5D0_hospital_f_03(void) {
     int count;
@@ -208,7 +208,7 @@ void func_01F6F5D0_hospital_f_03(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_f_03", func_01F6F890_hospital_f_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_f_03", func_01F6F890_hospital_f_03);
 
 void func_01F6F930_hospital_f_03(void) {
 

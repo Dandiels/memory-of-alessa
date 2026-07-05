@@ -321,13 +321,13 @@ void func_01F6DF90_mall_f_01(PicLoadImage_Data* pic_load)
     PictureLoadImage(next_pic_load);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6DFE0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6DFE0_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6E3F0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6E3F0_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6E630_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6E630_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6E6E0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6E6E0_mall_f_01);
 
 u_short func_01F6E700_mall_f_01(void) {
     float sp18;
@@ -337,11 +337,11 @@ u_short func_01F6E700_mall_f_01(void) {
     return func_002A47C0(sp18, sp1C);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6E730_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6E730_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6E9E0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6E9E0_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6EE40_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6EE40_mall_f_01);
 
 void func_01F6F1C0_mall_f_01(void) {
     func_01F6EE40_mall_f_01(0);
@@ -367,13 +367,13 @@ void func_01F6F210_mall_f_01(void) {
     func_01F6EE40_mall_f_01(0x2B);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F220_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F220_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F2B0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F2B0_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F300_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F300_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F510_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F510_mall_f_01);
 
 u_short func_01F6F5A0_mall_f_01(void) {
     float sp18;
@@ -383,13 +383,13 @@ u_short func_01F6F5A0_mall_f_01(void) {
     return func_002A47C0(sp18, sp1C);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F5D0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F5D0_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F720_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F720_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6F810_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6F810_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6FB30_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6FB30_mall_f_01);
 
 int func_01F6FCB0_mall_f_01(void) {
     Q sp10;
@@ -400,11 +400,11 @@ int func_01F6FCB0_mall_f_01(void) {
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6FD00_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6FD00_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6FDA0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6FDA0_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F6FED0_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F6FED0_mall_f_01);
 
 void func_01F70070_mall_f_01(void) {
     if (!GET_BIT(D_1D31650, 0x12)) {
@@ -432,6 +432,6 @@ void func_01F70070_mall_f_01(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F70160_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F70160_mall_f_01);
 
-INCLUDE_ASM("asm/nonmatchings/Event/mall_f_01", func_01F70720_mall_f_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/mall_f_01", func_01F70720_mall_f_01);

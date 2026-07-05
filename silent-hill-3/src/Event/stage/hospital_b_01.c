@@ -1,6 +1,6 @@
 #include "hospital_b_01.h"
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_b_01", func_01F6D680_hospital_b_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_b_01", func_01F6D680_hospital_b_01);
 
 void func_01F6D740_hospital_b_01(void) {
     if (GET_BIT(D_1D31698, 6)) {                
@@ -116,7 +116,7 @@ void func_01F6DB80_hospital_b_01(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_b_01", func_01F6DC60_hospital_b_01);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_b_01", func_01F6DC60_hospital_b_01);
 
 void func_01F6DDC0_hospital_b_01(void) {
     Q *sp20[4];

@@ -1,8 +1,8 @@
 #include "hospital_turning_00.h"
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6D680_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6D680_hospital_turning_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6D9F0_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6D9F0_hospital_turning_00);
 
 int func_01F6DB90_hospital_turning_00(void) {
 
@@ -49,17 +49,17 @@ int func_01F6DB90_hospital_turning_00(void) {
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6DD00_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6DD00_hospital_turning_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6DE50_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6DE50_hospital_turning_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6E230_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6E230_hospital_turning_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6E270_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6E270_hospital_turning_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6E300_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6E300_hospital_turning_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6E470_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6E470_hospital_turning_00);
 
 void func_01F6E540_hospital_turning_00(void) {
     float temp_f0;
@@ -79,7 +79,7 @@ void func_01F6E540_hospital_turning_00(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6E5E0_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6E5E0_hospital_turning_00);
 
 void func_01F6E720_hospital_turning_00(void) {
 
@@ -176,7 +176,7 @@ void func_01F6E770_hospital_turning_00(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6EAF0_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6EAF0_hospital_turning_00);
 
 void func_01F6EB70_hospital_turning_00(u_long128* arg0) {
     vec_copy(arg0, &D_01F715F0_hospital_turning_00);
@@ -194,7 +194,7 @@ int func_01F6EBB0_hospital_turning_00(float fparg0) {
     D_01F7160C_hospital_turning_00 = fparg0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_turning_00", func_01F6EBC0_hospital_turning_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_turning_00", func_01F6EBC0_hospital_turning_00);
 
 int func_01F6EC60_hospital_turning_00(void) {
     func_01F6EBC0_hospital_turning_00();

@@ -24,6 +24,6 @@ segments:
     vram: 0x1F6D680
     start: 0x80
     subsegments:
-      - [0x80, c, Event/building_f_02]
+      - [0x80, c, Event/stage/building_f_02]
       - [0x200, data, building_f_02_data]
   - [0x1200]

@@ -155,7 +155,7 @@ int func_01F6DA90_hospital_b_00(u_short* arg0) {
     
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/hospital_b_00", func_01F6DBF0_hospital_b_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/hospital_b_00", func_01F6DBF0_hospital_b_00);
 
 void func_01F6DD80_hospital_b_00(void) {
     int i;

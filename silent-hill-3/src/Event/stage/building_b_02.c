@@ -1,11 +1,11 @@
 #include "building_b_02.h"
 #include "Chacter/m3_sc.h"
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_02", func_01F6D680_building_b_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_02", func_01F6D680_building_b_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_02", func_01F6D7B0_building_b_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_02", func_01F6D7B0_building_b_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_02", func_01F6D980_building_b_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_02", func_01F6D980_building_b_02);
 
 void func_01F6DB60_building_b_02(void) { //I will debug it later
     SubCharacter* scp;
@@ -42,7 +42,7 @@ void func_01F6DB60_building_b_02(void) { //I will debug it later
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_02", func_01F6DC70_building_b_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_02", func_01F6DC70_building_b_02);
 
 int func_01F6DE10_building_b_02(void) { //this is similar to func_01F6E700_building_b_03
     int var_s0;

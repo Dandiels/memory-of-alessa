@@ -25,7 +25,7 @@ segments:
     start: 0x80
     bss_size: 0x80
     subsegments:
-      - [0x80, c, Event/church_03]
+      - [0x80, c, Event/stage/church_03]
       - [0x480, data, church_03_data]
       - { vram: 0x1F6DF80, type: bss, name: church_03_bss }
   - [0x980]

@@ -53,11 +53,11 @@ int func_01F6D740_amusement_00(void) {
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6D880_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6D880_amusement_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6DA30_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6DA30_amusement_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6DEA0_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6DEA0_amusement_00);
 
 int func_01F6E020_amusement_00(void) {
     int sp10[4];
@@ -84,9 +84,9 @@ int func_01F6E020_amusement_00(void) {
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6E120_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E120_amusement_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6E420_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E420_amusement_00);
 
 #ifdef NON_MATCHING
 int func_01F6E590_amusement_00(void) {
@@ -116,7 +116,7 @@ int func_01F6E590_amusement_00(void) {
     }
 }
 #else
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6E590_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E590_amusement_00);
 #endif
 
 u_int func_01F6E6A0_amusement_00(int arg0) {
@@ -129,7 +129,7 @@ u_int func_01F6E6A0_amusement_00(int arg0) {
     return x;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6E6D0_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E6D0_amusement_00);
 
 #ifdef NON_MATCHING
 void func_01F6E810_amusement_00(void) {
@@ -155,9 +155,9 @@ void func_01F6E810_amusement_00(void) {
     }
 }
 #else
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6E810_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E810_amusement_00);
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6E920_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6E920_amusement_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/amusement_00", func_01F6ED00_amusement_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/amusement_00", func_01F6ED00_amusement_00);

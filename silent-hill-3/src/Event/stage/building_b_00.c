@@ -1,8 +1,8 @@
 #include "building_b_00.h"
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_00", func_01F6D680_building_b_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_00", func_01F6D680_building_b_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_00", func_01F6D7C0_building_b_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_00", func_01F6D7C0_building_b_00);
 
 int func_01F6D9B0_building_b_00(void) {
     if (!GET_FLAG(D_1D31670, 0xB)) {
@@ -40,11 +40,11 @@ int func_01F6D9B0_building_b_00(void) {
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_00", func_01F6DB00_building_b_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_00", func_01F6DB00_building_b_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_00", func_01F6DC40_building_b_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_00", func_01F6DC40_building_b_00);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_00", func_01F6DD70_building_b_00);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_00", func_01F6DD70_building_b_00);
 
 int func_01F6E0B0_building_b_00(void) { // same elevator bullshit as the others similar functions
     int var_s0;

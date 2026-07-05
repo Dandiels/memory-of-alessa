@@ -25,7 +25,7 @@ segments:
     start: 0x80
     bss_size: 0x80
     subsegments:
-      - [0x80, c, Event/motel_00]
+      - [0x80, c, Event/stage/motel_00]
       - [0x500, data, motel_00_data]
       - { vram: 0x1F6E100, type: bss, name: motel_00_bss }
   - [0xB00]

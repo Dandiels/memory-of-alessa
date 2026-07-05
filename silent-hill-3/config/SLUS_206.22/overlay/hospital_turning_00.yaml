@@ -25,8 +25,8 @@ segments:
     start: 0x80
     bss_size: 0x700
     subsegments:
-      - [0x80, c, Event/hospital_turning_00]
+      - [0x80, c, Event/stage/hospital_turning_00]
       - [0x1700, data, hospital_turning_00_data]
-      - [0x3900, .rodata, Event/hospital_turning_00]
+      - [0x3900, .rodata, Event/stage/hospital_turning_00]
       - { vram: 0x1F70F80, type: bss, name: hospital_turning_00_bss }
   - [0x3980]

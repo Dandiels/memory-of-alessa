@@ -25,7 +25,7 @@ segments:
     start: 0x80
     bss_size: 0x80
     subsegments:
-      - [0x80, c, Event/city_00]
+      - [0x80, c, Event/stage/city_00]
       - [0x280, data, city_00_data]
       - { vram: 0x1F6DB80, type: bss, name: city_00_bss }
   - [0x580]

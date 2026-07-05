@@ -1,6 +1,6 @@
 #include "building_b_03.h"
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6D680_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6D680_building_b_03);
 
 int func_01F6D8F0_building_b_03(void) { //All of this handle the interaction with the "Flame Purifies All" painting in the otherworld gallery room
 
@@ -29,23 +29,23 @@ int func_01F6D8F0_building_b_03(void) { //All of this handle the interaction wit
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6D9F0_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6D9F0_building_b_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6DA80_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6DA80_building_b_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6DAD0_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6DAD0_building_b_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6DC90_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6DC90_building_b_03);
 
 void func_01F6DCE0_building_b_03(int arg0) {
     func_001DE5B0(func_01F6DC90_building_b_03, arg0, 1); 
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6DD00_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6DD00_building_b_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6DE40_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6DE40_building_b_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6DF60_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6DF60_building_b_03);
 
 #ifdef NON_MATCHING
 int func_01F6E700_building_b_03(void) { 
@@ -86,7 +86,7 @@ int func_01F6E700_building_b_03(void) {
     return var_s0;
 }
 #else
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6E700_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6E700_building_b_03);
 #endif
 
 void func_01F6E8C0_building_b_03(void) {
@@ -115,6 +115,6 @@ void func_01F6E8C0_building_b_03(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6E9B0_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6E9B0_building_b_03);
 
-INCLUDE_ASM("asm/nonmatchings/Event/building_b_03", func_01F6EAC0_building_b_03);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/building_b_03", func_01F6EAC0_building_b_03);

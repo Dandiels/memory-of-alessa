@@ -24,6 +24,6 @@ segments:
     vram: 0x1F6D680
     start: 0x80
     subsegments:
-      - [0x80,  c, Event/heaven_00]
+      - [0x80,  c, Event/stage/heaven_00]
       - [0x100, data, heaven_00_data]
   - [0x300]

@@ -107,7 +107,7 @@ int func_01F6D7B0_church_02(void) {
 }
 
 #else
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6D7B0_church_02); //SeCall memes
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6D7B0_church_02); //SeCall memes
 #endif
 
 int func_01F6DB40_church_02(void) {
@@ -220,17 +220,17 @@ int func_01F6DE30_church_02(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6DF20_church_02); // matched but I need to remove the gotos
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6DF20_church_02); // matched but I need to remove the gotos
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6E400_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6E400_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6E590_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6E590_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6EA20_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6EA20_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6EFA0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6EFA0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6F1F0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6F1F0_church_02);
 
 int func_01F6F810_church_02(void) {
     return 1;
@@ -288,7 +288,7 @@ void func_01F6F930_church_02(void) {
     func_01F6F940_church_02();
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6F940_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6F940_church_02);
 
 u_short func_01F6FDD0_church_02(void) {
     float sp18;
@@ -298,13 +298,13 @@ u_short func_01F6FDD0_church_02(void) {
     return func_002A47C0(sp18, sp1C);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6FE00_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6FE00_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6FE40_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6FE40_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6FE80_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6FE80_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F6FED0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F6FED0_church_02);
 
 int func_01F70000_church_02(int arg0) {
     return D_01F77858_church_02[arg0][0];
@@ -322,49 +322,49 @@ void func_01F70050_church_02(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F700D0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F700D0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F708C0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F708C0_church_02);
 
 int func_01F70930_church_02(int arg0) {
     return D_01D31938[arg0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F70950_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F70950_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F709E0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F709E0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F70C50_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F70C50_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F70D60_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F70D60_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F711F0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F711F0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F71370_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F71370_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F715C0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F715C0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F71710_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F71710_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F71A20_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F71A20_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F71B40_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F71B40_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F71CB0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F71CB0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F725C0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F725C0_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F725E0_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F725E0_church_02);
 
 void func_01F72720_church_02(void) {
     D_01F775C0_church_02 = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F72730_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F72730_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F72790_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F72790_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F72890_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F72890_church_02);
 
 void func_01F729F0_church_02(void) {
     D_01F77590_church_02 = 0;
@@ -409,6 +409,6 @@ void func_01F729F0_church_02(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F72B30_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F72B30_church_02);
 
-INCLUDE_ASM("asm/nonmatchings/Event/church_02", func_01F72F90_church_02);
+INCLUDE_ASM("asm/nonmatchings/Event/stage/church_02", func_01F72F90_church_02);

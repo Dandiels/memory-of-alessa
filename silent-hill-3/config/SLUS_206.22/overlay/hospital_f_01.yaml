@@ -25,7 +25,7 @@ segments:
     start: 0x80
     bss_size: 0x80
     subsegments:
-      - [0x80,   c,    Event/hospital_f_01]
+      - [0x80,   c,    Event/stage/hospital_f_01]
       - [0x2F00, data, hospital_f_01_data]
       - { vram: 0x1F71680, type: bss, name: hospital_f_01_bss }
   - [0x4080]

@@ -25,8 +25,8 @@ segments:
     start: 0x80
     bss_size: 0x80
     subsegments:
-      - [0x80, c, Event/sewer_00]
+      - [0x80, c, Event/stage/sewer_00]
       - [0xF00, data, sewer_00_data]
-      - [0x2700, .rodata, Event/sewer_00]
+      - [0x2700, .rodata, Event/stage/sewer_00]
       - { vram: 0x1F6FE00, type: bss, name: sewer_00_bss }
   - [0x2800]
