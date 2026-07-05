@@ -118,10 +118,10 @@ static inline vec_lerp(float* out, float* v, float* w, float t) {
 
 static inline float vec_length(float* a) {
     float result;
-    asm volatile("lwc1   %0,0(%1)\n\
-        lwc1   $f8,8(%1)\n\
-        mula.s %0, %0\n\
-        madd.s %0, $f8, $f8\n\
+    asm volatile("lwc1   %0,0(%1);\
+        lwc1   $f8,8(%1);\
+        mula.s %0, %0;\
+        madd.s %0, $f8, $f8;\
         sqrt.s %0, %0"
                  : "=f"(result) : "m"(a) : "f20", "f8", "f13");
     return result;
