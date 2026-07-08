@@ -39,4 +39,6 @@ static int printline(char* cp, char* top);
 
 static void _dbfntprint(char* buf /* r2 */);
 
+// int dbfntprintf(); // @todo: add correct signature
+
 #endif
