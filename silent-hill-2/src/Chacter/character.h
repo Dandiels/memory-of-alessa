@@ -45,8 +45,8 @@ typedef struct _CL_VHIT_RESULT {
 
 typedef struct shBattleInfo {
     // total size: 0x80
-    Vector4 pos;                 // offset 0x0, size 0x10
-    Vector4 vec;                 // offset 0x10, size 0x10
+    sceVu0FVECTOR pos;           // offset 0x0, size 0x10
+    sceVu0FVECTOR vec;           // offset 0x10, size 0x10
     u_short id;                  // offset 0x20, size 0x2
     u_short kind;                // offset 0x22, size 0x2
     float dead_timer;            // offset 0x24, size 0x4
@@ -448,7 +448,7 @@ typedef enum _JAMES_LOWER_STATUS {
     JMS_ST_L_KICK = 29,
     JMS_ST_L_TO_STAND = 30,
     JMS_ST_L_EVENT = 31,
-} E_JAMES_LOWER_STATUS;
+} JAMES_LOWER_STATUS;
 
 typedef enum _JAMES_UPPER_STATUS {
     JMS_ST_U_STAND = 0,
@@ -483,7 +483,7 @@ typedef enum _JAMES_UPPER_STATUS {
     JMS_ST_U_KICK = 29,
     JMS_ST_U_TO_STAND = 30,
     JMS_ST_U_EVENT = 31,
-} E_JAMES_UPPER_STATUS;
+} JAMES_UPPER_STATUS;
 
 typedef struct _CL_HITPOLY_COLUMN {
     // total size: 0x30
