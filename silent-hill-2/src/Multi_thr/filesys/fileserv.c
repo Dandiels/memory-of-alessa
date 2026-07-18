@@ -1,10 +1,14 @@
 #include "Multi_thr/filesys/fileserv.h"
-#include "Multi_thr/intc/syncv.h"
 #include "Multi_thr/filesys/filecmd.h"
+#include "Multi_thr/filesys/sh_cdvd.h"
+#include "Multi_thr/filesys/iopload.h"
+#include "Multi_thr/intc/syncv.h"
+
+#define CMD_QUEUE_PUT(_index, ...) ((((int (*)(u_long128*, ...))(&CmdQueuePut##_index))(fsCmdWork, __VA_ARGS__)))
 
 static void checkReadAlign(void* buffer /* r2 */);
 
-extern /* static */ u_long128* fsCmdWork;
+static u_long128* fsCmdWork = NULL;
 
 int fsInit(int th_prio /* r11 */, void* stack /* r10 */, int stackSize /* r9 */, void* queue /* r16 */, int queueSize /* r2 */) {
     int ret = 0; // r2
@@ -20,7 +24,7 @@ int fsInit(int th_prio /* r11 */, void* stack /* r10 */, int stackSize /* r9 */,
 int fsSync(int mode /* r17 */, int fid /* r16 */) {
     int ret; // r2 
     
-    if ((mode == 0) && (shSyncVEnd(1) < 0xA)) {
+    if ((mode == 0) && (shSyncVEnd(1) < 10)) {
         shSyncVEnd(0);
     }
     ret = CmdQueueSync(fsCmdWork, mode, fid);
@@ -35,19 +39,33 @@ int fsGetTrayStat(void) {
     return fsCmdGetTrayStat();
 }
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcSifInit);
+int fcSifInit(void) {
+    return CMD_QUEUE_PUT(0, shSifInit);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcCdInitW);
+int fcCdInitW(int cb_prio, void* stack, int stackSize) {    
+    return CMD_QUEUE_PUT(3, shCdInitW, cb_prio, stack, stackSize);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcIopLoadMod);
+int fcIopLoadMod(char* module) {    
+    return CMD_QUEUE_PUT(1, shIopLoadMod, module);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcDiskSelectC);
+int fcDiskSelectC(void) {
+    return CMD_QUEUE_PUT(0, fsCmdDiskSelectC);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcDiskSelectCH);
+int fcDiskSelectCH(void) {
+    return CMD_QUEUE_PUT(0, fsCmdDiskSelectCH);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcDiskSelectHC);
+int fcDiskSelectHC(void) {
+    return CMD_QUEUE_PUT(0, fsCmdDiskSelectHC);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcHdInit);
+int fcHdInit(int mode) {
+    return CMD_QUEUE_PUT(1, fsCmdHdInit, mode);
+}
 
 int fcDiskSelect(int mode /* r2 */) {
     switch (mode) {
@@ -60,21 +78,34 @@ int fcDiskSelect(int mode /* r2 */) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcExecDevSelect);
+int fcExecDevSelect(int mode) {
+    return CMD_QUEUE_PUT(1, fsCmdExecDevSelect, mode);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcSetParamForCheckDisk);
+int fcSetParamForCheckDisk(int media_permission, fsFile** fplist, void** buflist, int (*check_func)(fsFile**, void**)) {
+    return CMD_QUEUE_PUT(4, fsCmdSetParamForCheckDisk, media_permission, fplist, buflist, check_func);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcCdCheckDisk);
+int fcCdCheckDisk(int force_check) {
+    return CMD_QUEUE_PUT(1, fsCmdCdCheckDisk, force_check);
+}
 
 static void checkReadAlign(void* buffer /* r2 */) {
     if ((int)buffer & 0x3F) {
-        printf("fileserv.c:493> buffer alignment error! 0x%08x\n", buffer);
+        DEBUG_LOG_ON_LINE(493, "buffer alignment error! 0x%08x\n", buffer);
         while(1);
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcRead);
+int fcRead(fsFile* fp, void* buf) {
+    checkReadAlign(buf);
+    return CMD_QUEUE_PUT(2, fsCmdRead, fp, buf);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcReadPart);
+int fcReadPart(fsFile* fp, void* buf, int offset, int size) {
+    return CMD_QUEUE_PUT(4, fsCmdReadPart, fp, buf, offset, size);
+}
 
-INCLUDE_ASM("asm/nonmatchings/Multi_thr/filesys/fileserv", fcFixFile);
+int fcFixFile(fsFile* fp) {
+    return CMD_QUEUE_PUT(1, fsCmdFixFile, fp);
+}
