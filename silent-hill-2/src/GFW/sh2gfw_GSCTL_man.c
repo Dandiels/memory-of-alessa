@@ -1,4 +1,5 @@
 #include "sh2_common.h"
+#include "sce/eestruct.h"
 #include "GFW/sh2gfw_GSCTL_man.h"
 #include "GFW/sh2_GsAllEnv.h"
 
@@ -49,8 +50,6 @@ Q_WORDDATA* sh2gfw_setEND_gsctl(void) {
     return qwd;
 }
 
-#define SCE_VIF1_SET_MARK(mark, irq) ((u_int)(mark) | ((u_int)0x07 << 24) | ((u_int)(irq) << 31))
-
 void sh2gfw_setCALL_gsctl(Q_WORDDATA* pf) {
     Q_WORDDATA* qwd   = GSCTL_man.GS_tail;
     qwd->ui32[0]      = DMAcall;
@@ -59,10 +58,6 @@ void sh2gfw_setCALL_gsctl(Q_WORDDATA* pf) {
     qwd->ui32[3]      = 0;
     GSCTL_man.GS_tail = qwd + 1;
 }
-
-#define SCE_VIF1_SET_FLUSH(irq) (((u_int)0x11 << 24) | ((u_int)(irq) << 31))
-
-#define SCE_VIF1_SET_DIRECT(count, irq) ((u_int)(count) | ((u_int)(0x50) << 24) | ((u_int)(irq) << 31))
 
 void sh2gfw_setREF_TEXFLUSH(void) {
     Q_WORDDATA* qwd   = GSCTL_man.GS_tail;
