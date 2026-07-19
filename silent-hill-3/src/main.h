@@ -63,19 +63,6 @@ extern int func_00156B80(int arg1);
 extern void func_0015DB70(void);
 extern void func_00172FA0(void);
 
-/* @note Game states.
- * 1  = Main menu/splash screen
- * 2  = Loading screen
- * 5  = In-game
- * 6  = Inventory
- * 14 = Option menu
- *
- * @note PC apparently shares the same list.
- *
- * @note SH2 counterpart and PC in Ghidra tells this function returns some 4 byte value.
- */
-extern void GameMain(void);
-
 extern void func_00195490(void);
 extern void func_00195A40(void);
 extern void func_00195B90(void);
