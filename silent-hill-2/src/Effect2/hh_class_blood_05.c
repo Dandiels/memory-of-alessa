@@ -240,7 +240,7 @@ static u_int Object_Draw(HH_Object_Blood_05* pThis, ImpactQueue_Element* pElemen
     float (* pStq)[4] = _stq_list_0x0037D470[pElement->Option.Int_Value[1]];
     sceVu0FMATRIX lwm; sceVu0FMATRIX lsm;  
     sceVu0FMATRIX clip_mat;  
-    sceVu0FVECTOR Base_Rgba = { 40.0f, 255.0f, 240.0f, 0.0f };  
+    sceVu0FVECTOR Base_Rgba = { 40.0f, 255.0f, 230.0f, 0.0f };  
     sceVu0IVECTOR xyzf;
     sceVu0IVECTOR rgba;
     sceVu0FVECTOR stq_dummy;
